@@ -152,6 +152,89 @@ surf s22_1  sqc  0.0 0.0 15.85
 cell c22_1  uF22  fill  uBundle -s22_1  
 
 % -------------------------------------------------------------------
+% 2x2 cluster - 2D - Unrodded with Refl, to be placed in core on West side
+% -------------------------------------------------------------------
+lat uBundleRW  1 0.0  0.0 2 2 15.85
+uF2B uR
+uF1B uR
+
+surf s22_1RW  sqc  0.0 0.0 15.85
+cell c22_1RW  uF22RW  fill  uBundleRW -s22_1RW  
+
+% -------------------------------------------------------------------
+% 2x2 cluster - 2D - Unrodded with Refl, to be placed in core on South side
+% -------------------------------------------------------------------
+lat uBundleRS  1 0.0  0.0 2 2 15.85
+uR   uR
+uF1B uF2B
+
+surf s22_1RS  sqc  0.0 0.0 15.85
+cell c22_1RS  uF22RS  fill  uBundleRS -s22_1RS  
+
+% -------------------------------------------------------------------
+% 2x2 cluster - 2D - Unrodded with Refl, to be placed in core on North side
+% -------------------------------------------------------------------
+lat uBundleRN  1 0.0  0.0 2 2 15.85
+uF1B uF2B
+uR   uR
+
+surf s22_1RN  sqc  0.0 0.0 15.85
+cell c22_1RN  uF22RN  fill  uBundleRN -s22_1RN  
+
+
+% -------------------------------------------------------------------
+% 2x2 cluster - 2D - Unrodded with Refl, to be placed in core on East side
+% -------------------------------------------------------------------
+lat uBundleRE  1 0.0  0.0 2 2 15.85
+uR uF1B
+uR uF2B
+
+surf s22_1RE  sqc  0.0 0.0 15.85
+cell c22_1RE  uF22RE  fill  uBundleRE -s22_1RE  
+
+% -------------------------------------------------------------------
+% 2x2 cluster - 2D - Unrodded with Refl, to be placed in core on North West side
+% -------------------------------------------------------------------
+lat uBundleRNW  1 0.0  0.0 2 2 15.85
+uR   uF1B
+uR   uR
+
+surf s22_1RNW  sqc  0.0 0.0 15.85
+cell c22_1RNW  uF22RNW  fill  uBundleRNW -s22_1RNW 
+
+
+% -------------------------------------------------------------------
+% 2x2 cluster - 2D - Unrodded with Refl, to be placed in core on North East side
+% -------------------------------------------------------------------
+lat uBundleRNE  1 0.0  0.0 2 2 15.85
+uF2B   uR
+uR   uR
+
+surf s22_1RNE  sqc  0.0 0.0 15.85
+cell c22_1RNE  uF22RNE  fill  uBundleRNE -s22_1RNE 
+
+% -------------------------------------------------------------------
+% 2x2 cluster - 2D - Unrodded with Refl, to be placed in core on South East side
+% -------------------------------------------------------------------
+lat uBundleRSE  1 0.0  0.0 2 2 15.85
+uR   uF1B
+uF1B uF2B
+
+surf s22_1RSE  sqc  0.0 0.0 15.85
+cell c22_1RSE  uF22RSE  fill  uBundleRSE -s22_1RSE 
+
+% -------------------------------------------------------------------
+% 2x2 cluster - 2D - Unrodded with Refl, to be placed in core on South West side
+% -------------------------------------------------------------------
+lat uBundleRSW  1 0.0  0.0 2 2 15.85
+uR   uR
+uF1B uR
+
+surf s22_1RSW  sqc  0.0 0.0 15.85
+cell c22_1RSW  uF22RSW  fill  uBundleRSW -s22_1RSW 
+
+
+% -------------------------------------------------------------------
 % 2x2 cluster - 2D - Rodded
 % -------------------------------------------------------------------
 lat uBundleR  1 0.0  0.0 2 2 15.85
@@ -366,18 +449,35 @@ cell cCRB  uCR mSS  -sCRB \
   sP3_1 sP3_2 sP3_3 sP3_4 sP3_5 sP3_6 sP3_7 sP3_8 sP3_9 sP3_10 sP3_11 sP3_12 sP3_13 sP3_14 sP3_15 sP3_16 sP3_17 sP3_18 sP3_19 sP3_20 sP3_21 \
   sP4_1 sP4_2 sP4_3 sP4_4 sP4_5 sP4_6 sP4_7 sP4_8 sP4_9 sP4_10 sP4_11 sP4_12 sP4_13 sP4_14 sP4_15 sP4_16 sP4_17 sP4_18 sP4_19 sP4_20 sP4_21
 
+
+% -------------------------------------------------------------------
+% Reflector
+% -------------------------------------------------------------------
+surf sR1    sqc   0.0 0.0 15.85
+
+cell cR1  uR  mWaterChann -sR1
+
 % ------------------------------------------------------------------------------
 
-lat uCore 1 0.0  0.0 2 2 31.70
-uF22  uF22R
-uF22R uF22
+lat uCore 1 0.0  0.0 10 10 31.70
+uR      uR      uR uF22RS uF22RS uF22RS uF22RS uF22RSW uR      uR 
+uR      uF22RSE uF22R   uF22   uF22R  uF22   uF22R  uF22    uF22RSW uR  
+uR      uF22R   uF22    uF22R  uF22   uF22R  uF22   uF22R   uF22    uF22RSW 
+uF22RSE  uF22    uF22R   uF22   uF22R  uF22   uF22R  uF22    uF22R   uF22RW  
+uF22RE  uF22R   uF22    uF22R  uF22   uF22R  uF22   uF22R   uF22    uF22RW 
+uF22RE  uF22    uF22R   uF22   uF22R  uF22   uF22R  uF22    uF22R   uF22RW  
+uF22RE  uF22R   uF22    uF22R  uF22   uF22R  uF22   uF22R   uF22    uF22RW 
+uF22RNW uF22    uF22R   uF22   uF22R  uF22   uF22R  uF22    uF22R   uF22RNE  
+uR      uF22RNW uF22    uF22R  uF22   uF22R  uF22   uF22R   uF22RNE uR 
+uR      uR      uF22RNW uF22RN uF22RN uF22RN uF22RN uF22RNE uR      uR  
 
-
-surf s1000   sqc      0.0 0.0 31.70
+surf s1000   sqc      0.0 0.0 158.5
 surf top     pz       182.88
+surf z1      pz       0.0
 surf bottom  pz      -182.88
 
-cell c1000  0 fill uCore     -s1000          bottom -top  
+cell c1000  0 fill uCore     -s1000     bottom -z1
+cell c1001  0 fill uCore     -s1000     z1 -top
 cell c1100  0 outside        -bottom 
 cell c1101  0 outside         top 
 cell c1102  0 outside         s1000    bottom -top 

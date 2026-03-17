@@ -1,0 +1,335 @@
+! Brief: Test BWR stacked depl in full core
+!******************************************************************************
+CASEID bwrx300
+!******************************************************************************
+SNAPID bwrx300
+!******************************************************************************
+CNTL
+      RUN_OPTS     F  T
+      TH_FDBK      T
+      INT_TH       T 1  '../../paths/paths_bwrx300.inp'
+      CORE_TYPE    BWR
+      CORE_POWER   100.0
+      SEARCH       ROD
+      BANK_POS     0.0 0.0
+      BANK_LLT     0 0
+      BANK_ULT     48 48
+      BANK_GRP     1 2
+      DECAY_HEAT   F
+      MULT_CYC     T
+      ROT_ADF      T
+      DETECTOR     F   50000  2
+      PIN_POWER    F
+      XE_SM        1  1  1  1
+      XS_EXTRAP    0.0  0.0
+      DEPLETION    T  1.0E-5  T
+      TREE_XS      T    8   T    T    F    F    T    F    T    F    T    F    F    T    T    F    F
+      INP_OPTS     F  T
+      PLOT_OPTS    0  0  1
+!!
+!! Printing Options
+!! 1  Detailed input edit
+!! 2  Iteration history display
+!! 3  Planar power distributions
+!! 4  Detailed pin power distributions
+!! 5  Reactivity edit and adjoint flux
+!! 6  Feedback component reactivity edit
+!! 7  Integrated flux and precursor density edit
+!! 8  Planar flux distributions
+!! 9  Xe/Sm number densities
+!! 10 T/H state variables
+!! 11 1D collapsed group constants
+!! 12 Point Kinetics Data
+!! 13 Radial Power Shape
+!! 14 Radial Flux Shape
+!! 15 Harmonics
+!!               1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
+!      print_opt  T  F  F  F  F  F  F  F  F  T  F  F  F  F  F
+!
+!      oned_kin        F  QS   1dk.file
+!      oned_xsid       0 0 0 0 0 0
+!      print_assy      36
+!
+!******************************************************************************
+PARAM
+       N_ITERS_SS  15 200
+       NLUPD_SS   3  5  1
+       NODAL_KERN  HYBRID
+       CONV_SS     1.0e-6 5.0e-6 1.0e-5
+       CNV_TH_SS   1.0e-4 
+       INIT_GUESS   1
+       LSOLVER  1  1  20
+       CMFD  1 
+       WIELANDT  2.0 10.0
+       DECUSP  2
+!
+!******************************************************************************
+GEOM
+!
+       GEO_DIM    20  20  27  1  1
+!
+       RAD_CONF
+       0  0  0  0  0  0  6  5  5  5  5  5  5  6  0  0  0  0  0  0
+       0  0  0  0  0  6  2  1  1  1  1  1  1  4  6  0  0  0  0  0
+       0  0  0  0  6  2  1  1  1  1  1  1  1  1  4  6  0  0  0  0
+       0  0  0  6  2  1  1  1  1  1  1  1  1  1  1  4  6  0  0  0
+       0  0  6  2  1  1  1  1  1  1  1  1  1  1  1  1  4  6  0  0
+       0  6  2  1  1  1  1  1  1  1  1  1  1  1  1  1  1  4  6  0
+       6  2  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  4  6
+       2  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  4
+       2  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  4
+       2  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  4
+       2  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  4
+       2  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  4
+       2  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  4
+       6  2  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  4  6
+       0  6  2  1  1  1  1  1  1  1  1  1  1  1  1  1  1  4  6  0
+       0  0  6  2  1  1  1  1  1  1  1  1  1  1  1  1  4  6  0  0
+       0  0  0  6  2  1  1  1  1  1  1  1  1  1  1  4  6  0  0  0
+       0  0  0  0  6  2  1  1  1  1  1  1  1  1  4  6  0  0  0  0
+       0  0  0  0  0  6  2  1  1  1  1  1  1  4  6  0  0  0  0  0
+       0  0  0  0  0  0  6  3  3  3  3  3  3  6  0  0  0  0  0  0
+!
+       ASSY_TYPE      1  1*7  1*1   8*9  8*10  7*11  1*18 1*8  FUEL ! Partial rods
+       ASSY_TYPE      2  1*7  1*7  23*2              1*8 1*8  REFL ! Reflector to West
+       ASSY_TYPE      3  1*7  1*7  23*3              1*8 1*8  REFL ! Reflector to South
+       ASSY_TYPE      4  1*7  1*7  23*4              1*8 1*8  REFL ! Reflector to East
+       ASSY_TYPE      5  1*7  1*7  23*5              1*8 1*8  REFL ! Reflector to North
+       ASSY_TYPE      6  1*7  1*7  23*6              1*8 1*8  REFL ! Reflector Corners
+       ASSY_TYPE      7  1*7  1*1   8*12  8*13  7*14 1*18 1*8  FUEL ! Partial rods
+       ASSY_TYPE      8  1*7  1*1   8*15  8*16  7*17 1*18 1*8  FUEL ! Partial rods
+!
+       GRID_X         20*15.24
+       GRID_Y         20*15.24
+       GRID_Z         1*15.24 1*15.24 23*15.24 1*15.24 1*15.24
+!
+       NEUTMESH_X     20*1
+       NEUTMESH_Y     20*1
+!
+       BOUN_COND      2 2 2 2 2 2
+
+!
+       CR_AXINFO  33.02  7.5671
+       BANK_CONF
+                         0  0  0  0  0  0  0  0
+                      0  0  0  0  0  0  0  0  0  0 
+                   0  0  0  0  0  0  0  0  0  0  0  0 
+                0  0  0  0  0  0  0  0  0  0  0  0  0  0  
+             0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+          0  0  0  0  0  0  0  0  1  1  0  0  0  0  0  0  0  0 
+       0  0  0  0  0  0  0  0  0  1  1  0  0  0  0  0  0  0  0  0
+       0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+       0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+       0  0  0  0  0  1  1  0  0  2  2  0  0  1  1  0  0  0  0  0
+       0  0  0  0  0  1  1  0  0  2  2  0  0  1  1  0  0  0  0  0
+       0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+       0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+       0  0  0  0  0  0  0  0  0  1  1  0  0  0  0  0  0  0  0  0
+          0  0  0  0  0  0  0  0  1  1  0  0  0  0  0  0  0  0
+             0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+                0  0  0  0  0  0  0  0  0  0  0  0  0  0  
+                   0  0  0  0  0  0  0  0  0  0  0  0 
+                      0  0  0  0  0  0  0  0  0  0 
+                         0  0  0  0  0  0  0  0
+!
+       CRB_DEF         1
+                       1 1 363.22
+       CRB_TYPE        1 1
+       CRB_GTUBE       0 0
+!
+       ADF_ROT
+                         0  0  0  0  0  0  0  0
+                      0  0  2  1  2  1  2  1  0  0
+                   0  0  2  3  0  3  0  3  0  1  0  0 
+                0  0  2  1  2  1  2  1  2  1  2  1  0  0
+             0  0  2  3  0  3  0  3  0  3  0  3  0  1  0  0
+          0  0  2  1  2  1  2  1  2  1  2  1  2  1  2  1  0  0 
+       0  0  2  3  0  3  0  3  0  3  0  3  0  3  0  3  0  1  0  0
+       0  2  1  2  1  2  1  2  1  2  1  2  1  2  1  2  1  2  1  0
+       0  3  0  3  0  3  0  3  0  3  0  3  0  3  0  3  0  3  0  0
+       0  2  1  2  1  2  1  2  1  2  1  2  1  2  1  2  1  2  1  0
+       0  3  0  3  0  3  0  3  0  3  0  3  0  3  0  3  0  3  0  0
+       0  2  1  2  1  2  1  2  1  2  1  2  1  2  1  2  1  2  1  0
+       0  3  0  3  0  3  0  3  0  3  0  3  0  3  0  3  0  3  0  0
+       0  0  3  2  1  2  1  2  1  2  1  2  1  2  1  2  1  0  0  0
+          0  0  3  0  3  0  3  0  3  0  3  0  3  0  3  0  0  0
+             0  0  3  2  1  2  1  2  1  2  1  2  1  0  0  0
+                0  0  3  0  3  0  3  0  3  0  3  0  0  0 
+                   0  0  3  2  1  2  1  2  1  0  0  0
+                      0  0  3  0  3  0  3  0  0  0 
+                         0  0  0  0  0  0  0  0
+!
+       DET_XY_LOC     13
+                         0  0  0  0  0  0  0  0
+                      0  0  0  0  0  0  0  0  0  0
+                   0  0  0  0  0  0  0  0  0  0  0  0
+                0  0  0  0  0  0  0  0  0  0  0  0  0  0 
+             0  0  0  0  1  1  0  0  2  2  0  0  3  3  0  0
+          0  0  0  0  0  1  1  0  0  2  2  0  0  3  3  0  0  0  
+       0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+       0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+       0  0  4  4  0  0  5  5  0  0  6  6  0  0  7  7  0  0  0  0
+       0  0  4  4  0  0  5  5  0  0  6  6  0  0  7  7  0  0  0  0
+       0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+       0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+       0  0  8  8  0  0  9  9  0  0 10 10  0  0 11 11  0  0  0  0
+       0  0  8  8  0  0  9  9  0  0 10 10  0  0 11 11  0  0  0  0
+          0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 
+             0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+                0  0  0 12 12  0  0 13 13  0  0  0  0  0  
+                   0  0 12 12  0  0 13 13  0  0  0  0
+                      0  0  0  0  0  0  0  0  0  0
+                         0  0  0  0  0  0  0  0
+!
+       DET_Z_LOC      8 1
+                      2  6 10 13 14 17 21 25
+       DET_Z_WEI      1  1  1  1  1  1  1  1
+!
+       DET_NAME
+       1  LPRM1
+       2  LPRM2
+       3  LPRM3
+       4  LPRM4
+       5  LPRM5
+       6  LPRM6
+       7  LPRM7
+       8  LPRM8
+       9  LPRM9
+      10  LPRM10
+      11  LPRM11
+      12  LPRM12
+      13  LPRM13
+!
+      PINCAL_LOC
+                         0  0  0  0  0  0  0  0
+                      0  0  0  0  0  0  0  0  0  0
+                   0  0  0  0  0  0  0  0  0  0  0  0 
+                0  0  0  0  0  0  0  0  0  0  0  0  0  0
+             0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+          0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 
+       0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+       0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+       0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+       0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+       0  0  0  0  0  0  0  0  0  0  1  1  1  1  1  1  1  1  1  0
+       0  0  0  0  0  0  0  0  0  0  1  1  1  1  1  1  1  1  1  0
+       0  0  0  0  0  0  0  0  0  0  1  1  1  1  1  1  1  1  1  0
+       0  0  0  0  0  0  0  0  0  0  1  1  1  1  1  1  1  1  0  0
+          0  0  0  0  0  0  0  0  0  1  1  1  1  1  1  1  0  0
+             0  0  0  0  0  0  0  0  1  1  1  1  1  1  0  0
+                0  0  0  0  0  0  0  1  1  1  1  1  0  0 
+                   0  0  0  0  0  0  1  1  1  1  0  0
+                      0  0  0  0  0  1  1  1  0  0 
+                         0  0  0  0  0  0  0  0
+
+!******************************************************************************
+FDBK
+       FA_POWPIT       3.625  15.24
+!******************************************************************************
+!******************************************************************************
+DEPL
+!
+       TIME_STP        1*1 1*1 24*30
+!
+       HST_OPT         T T F T F    ! cr, dc, pc, tf, tc
+       OUT_OPT         T T T T T    ! pow,hst,ths,xen,xs
+       INP_HST         './bwrx300.rst_cyc' 1 24
+!
+       PMAXS_F         1   '../../polaris_set6/xs_g007_000B'                    1  ! U blanket
+       PMAXS_F         2   '../../polaris_set6/xs_grad'                    2  ! Radial Refl, West
+       PMAXS_F         3   '../../polaris_set6/xs_grad'                    3  ! Radial Refl, West
+       PMAXS_F         4   '../../polaris_set6/xs_grad'                    4  ! Radial Refl, West
+       PMAXS_F         5   '../../polaris_set6/xs_grad'                    5  ! Radial Refl, West
+       PMAXS_F         6   '../../polaris_set6/xs_grad'                    6  ! Radial Refl, Corner
+       PMAXS_F         7   '../../polaris_set6/xs_greflBot1'               7  ! Bottom Reflector
+       PMAXS_F         8   '../../polaris_set6/xs_greflTop1'               8  ! Top Reflector
+       PMAXS_F         9   '../../polaris_set6/xs_g426_061B'               9  ! Fuel
+       PMAXS_F         10  '../../polaris_set6/xs_g440_061M'               10 ! Fuel
+       PMAXS_F         11  '../../polaris_set6/xs_g454_098T'               11 ! Fuel
+       PMAXS_F         12  '../../polaris_set6/xs_g394_065B'               12  ! Fuel
+       PMAXS_F         13  '../../polaris_set6/xs_g440_061M'               13 ! Fuel
+       PMAXS_F         14  '../../polaris_set6/xs_g454_098T'               14 ! Fuel 
+       PMAXS_F         15  '../../polaris_set6/xs_g440_061B'               15  ! Fuel
+       PMAXS_F         16  '../../polaris_set6/xs_g454_098M'               16 ! Fuel
+       PMAXS_F         17  '../../polaris_set6/xs_g454_098T'               17 ! Fuel 
+       PMAXS_F         18  '../../polaris_set6/xs_g007_000T'               18  ! U blanket
+!
+!******************************************************************************
+MCYCLE
+
+  BANK_DEF 1    0.0  0.0 
+
+
+  CYCLE_DEF  1 
+    DEPL_STEP 0 
+    POWER_LEV 2*100.0
+    BANK_SEQ 2*1
+
+
+  CYCLE_DEF  2 
+    DEPL_STEP 1*1 1*1 23*30
+    POWER_LEV 26*100.0
+    BANK_SEQ  26*1
+    FLOW_RATE 26*1891.2 
+    INLET_ENT 26*1212.5
+    EXIT_PRES 26*7.20E+06
+  
+  
+  LOCATION
+                                     0     0     0     0     0     0     0     0   
+                               0     0  A-07  A-08  A-09  A-10  A-11  A-12     0     0 
+                         0     0  B-06  B-07  B-08  B-09  B-10  B-11  B-12  B-13     0     0   
+                   0     0  C-05  C-06  C-07  C-08  C-09  C-10  C-11  C-12  C-13  C-14     0     0 
+             0     0  D-04  D-05  D-06  D-07  D-08  D-09  D-10  D-11  D-12  D-13  D-14  D-15     0     0   
+       0     0  E-03  E-04  E-05  E-06  E-07  E-08  E-09  E-10  E-11  E-12  E-13  E-14  E-15  E-16     0     0   
+ 0     0  F-02  F-03  F-04  F-05  F-06  F-07  F-08  F-09  F-10  F-11  F-12  F-13  F-14  F-15  F-16  F-17     0     0   
+ 0  G-01  G-02  G-03  G-04  G-05  G-06  G-07  G-08  G-09  G-10  G-11  G-12  G-13  G-14  G-15  G-16  G-17  G-18     0   
+ 0  H-01  H-02  H-03  H-04  H-05  H-06  H-07  H-08  H-09  H-10  H-11  H-12  H-13  H-14  H-15  H-16  H-17  H-18     0
+ 0  I-01  I-02  I-03  I-04  I-05  I-06  I-07  I-08  I-09  I-10  I-11  I-12  I-13  I-14  I-15  I-16  I-17  I-18     0
+ 0  J-01  J-02  J-03  J-04  J-05  J-06  J-07  J-08  J-09  J-10  J-11  J-12  J-13  J-14  J-15  J-16  J-17  J-18     0
+ 0  K-01  K-02  K-03  K-04  K-05  K-06  K-07  K-08  K-09  K-10  K-11  K-12  K-13  K-14  K-15  K-16  K-17  K-18     0
+ 0  L-01  L-02  L-03  L-04  L-05  L-06  L-07  L-08  L-09  L-10  L-11  L-12  L-13  L-14  L-15  L-16  L-17  L-18     0
+ 0     0  M-02  M-03  M-04  M-05  M-06  M-07  M-08  M-09  M-10  M-11  M-12  M-13  M-14  M-15  M-16  M-17     0     0   
+       0     0  N-03  N-04  N-05  N-06  N-07  N-08  N-09  N-10  N-11  N-12  N-13  N-14  N-15  N-16     0     0   
+             0     0  O-04  O-05  O-06  O-07  O-08  O-09  O-10  O-11  O-12  O-13  O-14  O-15     0     0
+                   0     0  P-05  P-06  P-07  P-08  P-09  P-10  P-11  P-12  P-13  P-14     0     0 
+                         0     0  Q-06  Q-07  Q-08  Q-09  Q-10  Q-11  Q-12  Q-13     0     0
+                               0     0  R-07  R-08  R-09  R-10  R-11  R-12     0     0 
+                                     0     0     0     0     0     0     0     0
+             
+
+  SHUF_MAP   1   1
+                                     0     0     0     0     0     0     0     0   
+                               0     0  F-07  C-08  D-07  D-12  C-11  F-12     0     0 
+                         0     0  B-09  D-09    -8  C-07  C-12    -8  D-10  B-10     0     0   
+                   0     0  E-06  E-08    -8  E-09    -1    -1  E-10    -8  E-11  E-13     0     0 
+             0     0  F-06  F-09    -1  B-08    -1  F-08  F-11    -1  B-11    -1  F-10  F-13     0     0   
+       0     0  F-05  I-06    -1  C-09    -1  D-06    -7    -7  D-13    -1  C-10    -1  I-13  F-14     0     0   
+ 0     0  I-02  H-05    -1  I-03  E-05  E-07    -1  D-08  D-11    -1  E-12  E-14  I-16    -1  H-14  I-17     0     0   
+ 0  G-06  I-04    -8  H-02    -1  G-05    -1  H-09  G-08  G-11  H-10    -1  G-14    -1  H-17    -8  I-15  G-13     0   
+ 0  H-03    -8  I-05    -1  F-04    -1  I-08  I-09    -7    -7  I-10  I-11    -1  F-15    -1  I-14    -8  H-16     0
+ 0  G-04  G-03    -1  H-06    -7  H-04  H-07    -7  G-07  G-12    -7  H-12  H-15    -7  H-13    -1  G-16  G-15     0
+ 0  L-04  L-03    -1  K-06    -7  K-04  K-07    -7  L-07  L-12    -7  K-12  K-15    -7  K-13    -1  L-16  L-15     0
+ 0  K-03    -8  J-05    -1  M-04    -1  J-08  J-09    -7    -7  J-10  J-11    -1  M-15    -1  J-14    -8  K-16     0
+ 0  L-06  J-04    -8  K-02    -1  L-05    -1  K-09  L-08  L-11  K-10    -1  L-14    -1  K-17    -8  J-15  L-13     0
+ 0     0  J-02  K-05    -1  J-03  N-05  N-07    -1  O-08  O-11    -1  N-12  N-14  J-16    -1  K-14  J-17     0     0   
+       0     0  M-05  J-06    -1  P-09    -1  O-06    -7    -7  O-13    -1  P-10    -1  J-13  M-14     0     0   
+             0     0  M-06  M-09    -1  Q-08    -1  M-08  M-11    -1  Q-11    -1  M-10  M-13     0     0
+                   0     0  N-06  N-08    -8  N-09    -1    -1  N-10    -8  N-11  N-13     0     0 
+                         0     0  Q-09  O-09    -8  P-07  P-12    -8  O-10  Q-10     0     0
+                               0     0  M-07  P-08  O-07  O-12  P-11  M-12     0     0 
+                                     0     0     0     0     0     0     0     0
+             
+
+  CYCLE_IND    1  0  1
+  CYCLE_IND    2  1  2
+  CYCLE_IND    3  1  2
+  CYCLE_IND    4  1  2
+  CYCLE_IND    5  1  2
+  CYCLE_IND    6  1  2
+  CYCLE_IND    7  1  2
+  CYCLE_IND    8  1  2
+  CYCLE_IND    9  1  2
+  CYCLE_IND   10  1  2
+  CONV_EC    0.1  10     
+.
