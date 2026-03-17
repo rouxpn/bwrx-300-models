@@ -1,0 +1,12 @@
+
+ ***** Warning: Cell c2000 is not used in geometry
+
+
+ ***** Warning: Nest 5 is not used in geometry
+
+
+***** Mon Feb 10 23:12:41 2025 (seed = 1739247158420, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 40096.03c has 1 decay modes
+

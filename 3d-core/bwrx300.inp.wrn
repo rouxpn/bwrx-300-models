@@ -1,0 +1,29 @@
+
+ ***** Note #1 Fri Mar 13 15:27:54 2026
+
+Burnable material mF1 used in 3 nests is handled as a single
+       depletion zone. This differs from the methodology used in Serpent 2.2.1
+       and earlier code versions. The material sub-division can be enabled by
+       by setting fallback option 2.2.2-001, but it is recommended to use the
+       "div sep" feature instead.
+
+
+ ***** Note #2 Fri Mar 13 15:27:54 2026
+
+Nest 5 is not used in geometry
+
+
+ ***** Note #3 Fri Mar 13 15:27:54 2026
+
+Nest W is not used in geometry
+
+
+ ***** Note #4 Fri Mar 13 15:27:54 2026
+
+Lattice uBundleR is not used in geometry
+
+
+ ***** Note #5 Fri Mar 13 15:27:54 2026
+
+Axial repeated boundary condition not applied to surface s1000
+

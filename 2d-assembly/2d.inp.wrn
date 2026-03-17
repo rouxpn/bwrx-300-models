@@ -1,0 +1,19 @@
+
+ ***** Warning: Nest 5 is not used in geometry
+
+
+***** Mon Mar 10 17:34:38 2025 (seed = 1741642472411, MPI task = 0)
+Warning message from function CheckNuclideData:
+
+Stable nuclide 40096.03c has 1 decay modes
+
+
+Simulation completed.
+------------------------------------------------- MPI task 0
+Mon Mar 10 17:34:45 2025  (errors: 0, warnings: 1, notes: 1)
+
+
+Simulation completed.
+------------------------------------------------- MPI task 1
+Mon Mar 10 17:34:45 2025  (errors: 0, warnings: 0, notes: 0)
+

@@ -1,0 +1,166 @@
+set title "BWRX-300 Core Model (3D)"
+set pop 100000 100 50   
+set bc 2                % Reflective boundary conditions
+
+set power 300000000.0  % Core power (300 MWt)
+
+% Cross-Section Libraries
+set acelib "/data/cm/shared/nuclearCodes/serpent/libs/xsdata/jeff311/sss_jeff311u.xsdata"
+set declib "/data/cm/shared/nuclearCodes/serpent/libs/xsdata/jeff311/sss_jeff311.dec"
+set nfylib "/data/cm/shared/nuclearCodes/serpent/libs/xsdata/jeff311/sss_jeff311.nfy"
+therm lwtr 300.000000 lwj3.00t lwj3.03t
+therm lwtre 300.000000 lwj3.00t lwj3.03t
+therm grph 300.000000 grj3.00t grj3.04t
+
+% Plot for Verification
+plot 3 1000 1000 0.0 
+plot 3 1000 1000 1.0 -7.62 7.62 -7.62 7.62
+plot 2 500 1500
+
+% Define Materials
+mat mF1  -10.4215  tmp 900  burn 1
+    92235.09c  1.0515E-03
+    92238.09c  2.2314E-02
+    8016.09c   4.6731E-02
+
+mat mClad -6.5 tmp 350 rgb 105 105 105  % Zr-based alloy cladding
+    40090.03c  0.5145  % Zr-90
+    40091.03c  0.1122  % Zr-91
+    40092.03c  0.1715  % Zr-92
+    40094.03c  0.1738  % Zr-94
+    40096.03c  0.0280  % Zr-96
+
+mat mSS -7.87 tmp 350 rgb 255 165 0 
+    26000.03c  1.0
+
+mat mWater -1.0 tmp 350 moder lwtr 1001 rgb 10 10 100 
+    1001.03c  2.0
+    8016.03c  1.0
+
+mat mWaterChann -1.0 tmp 350 moder lwtr 1001 rgb 10 10 200 
+    1001.03c  2.0
+    8016.03c  1.0
+
+mat mCR -6.5 tmp 350 rgb 50 50 50 
+    40090.03c  0.2032  % B-10
+    40091.03c  0.3068  % B-11
+    6012.03c   0.4900  % C-12
+
+% Pin definitions
+pin 1
+mF1     4.096E-01 
+mClad   4.750E-01
+mWater
+
+pin 2
+mF1     4.096E-01
+mClad   4.750E-01
+mWater
+
+pin 3
+mF1     4.096E-01
+mClad   4.750E-01
+mWater
+
+pin 4
+mSS     4.096E-01
+mWater
+
+pin 5
+mClad   6.020E-01
+mWater
+
+pin W 
+mWaterChann
+
+pin T
+mWaterChann       1.20
+mClad             1.28
+mWater
+
+% Water channels
+lat X 1 0.0 0.0 2 2  2.59
+T T
+T T  
+
+% -------------------------------------------------------------------
+% Fuel assembly 1 - 2D
+% -------------------------------------------------------------------
+lat uLAT1B 1 0.0  0.0 10 10 1.295  % 10x10 lattice, pitch = 1.295 cm
+1  1  1  4  2  2  4  1  1  1
+1  1  1  1  1  1  1  1  1  1
+1  1  1  1  1  1  1  1  1  1
+4  1  1  X  X  3  1  1  1  4
+2  1  1  X  X  3  3  1  1  2
+2  1  1  3  3  X  X  1  1  2
+4  1  1  1  3  X  X  1  1  4
+1  1  1  1  1  1  1  1  1  1
+1  1  1  1  1  1  1  1  1  1
+1  1  1  4  2  2  4  1  1  1
+
+trans u X 0
+
+surf s11B  sqc  0.0 0.0 6.4750 0.5
+surf s12B  sqc  0.0 0.0 6.9750 0.5
+surf s13B  sqc  0.0 0.0 7.0000 0.5
+
+
+cell c101B  uF1B  fill  uLAT1B -s11B     
+cell c102B  uF1B  mClad        -s12B   s11B   
+cell c103B  uF1B  mWaterChann  -s13B   s12B                              
+
+% ------------------------------------------------------------------------------
+
+% -------------------------------------------------------------------
+% CR blade 
+% -------------------------------------------------------------------
+% -- Control Blade %
+surf sCR cross 0.0 0.0 12.950 0.50 
+cell c2000  uCR mCR     -sCR
+% ------------------------------------------------------------------------------
+
+lat uCore 1 0.0  0.0 1 1 13.95
+uLAT1B
+
+surf s1000   sqc      0.0 0.0 6.4750 0.5 
+surf s1001   sqc      0.0 0.0 6.9750 
+surf top     pz       182.88
+surf bottom  pz      -182.88
+
+cell c1000  0 fill uCore     -s1000          bottom -top  
+cell c1001  0 mClad          -s1001   s1000  bottom -top 
+cell c1100  0 outside        -bottom 
+cell c1101  0 outside         top 
+cell c1102  0 outside         s1001    bottom -top 
+
+
+
+%lat uBun1 1 0.0 0.0 2 2 13.95
+%uLAT1B uLAT1B
+%uLAT1B uLAT1B
+
+% Define Boundaries and Reflectors
+%surf s1000   sqc      0.0 0.0 13.95
+%surf s1001   cross    0.0 0.0 12.950 0.40 1.5 % 0.5 cross?
+%surf s1002   sqc      0.0 0.0 14.00
+%surf top     pz       182.88
+%surf bottom  pz      -182.88
+
+%cell c1000  0 fill uBun1     -s1000   s1001   bottom -top 
+%cell c1001  0 mCR            -s1001   bottom -top 
+%cell c1002  0 mWaterChann     s1000 s1001 bottom -top
+%cell c1100  0 outside        -bottom 
+%cell c1101  0 outside         top 
+%cell c1102  0 outside         s1000    bottom -top  
+
+
+%surf s1000   sqc      0.0 0.0 13.95
+%surf s1002   sqc      0.0 0.0 14.00
+%surf top     pz       182.88
+%surf bottom  pz      -182.88
+
+%cell c1000  0 fill uBun1     -s1000       bottom -top  
+%cell c1002  0 mWaterChann    -s1002 s1000 bottom -top
+%cell c1100  0 outside        -bottom 
+%cell c1101  0 outside         top 
+%cell c1102  0 outside         s1002    bottom -top 
