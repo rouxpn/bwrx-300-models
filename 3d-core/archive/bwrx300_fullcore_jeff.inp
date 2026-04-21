@@ -1,0 +1,493 @@
+set title "BWRX-300 Core Model (3D)"
+set pop 100000 100 50   
+set bc 2                % Reflective boundary conditions
+
+set power 300000000.0  % Core power (300 MWt)
+
+% Cross-Section Libraries
+set acelib "/data/cm/shared/nuclearCodes/serpent/libs/xsdata/jeff311/sss_jeff311u.xsdata"
+set declib "/data/cm/shared/nuclearCodes/serpent/libs/xsdata/jeff311/sss_jeff311.dec"
+set nfylib "/data/cm/shared/nuclearCodes/serpent/libs/xsdata/jeff311/sss_jeff311.nfy"
+therm lwtr 300.000000 lwj3.00t lwj3.03t
+therm lwtre 300.000000 lwj3.00t lwj3.03t
+therm grph 300.000000 grj3.00t grj3.04t
+
+% Plot for Verification
+plot 3 1000 1000 0.0 
+plot 3 1000 1000 1.0 -7.62 7.62 -7.62 7.62
+plot 2 500 1500  5.0 -7.62 7.62 -188 188 
+
+% Define Materials
+mat mF1  -10.4215  tmp 900  burn 1
+    92235.09c  1.0515E-03
+    92238.09c  2.2314E-02
+    8016.09c   4.6731E-02
+
+mat mClad -6.5 tmp 350 rgb 105 105 105  % Zr-based alloy cladding
+    40090.03c  0.5145  % Zr-90
+    40091.03c  0.1122  % Zr-91
+    40092.03c  0.1715  % Zr-92
+    40094.03c  0.1738  % Zr-94
+    40096.03c  0.0280  % Zr-96
+
+mat mSS -7.87 tmp 350 rgb 255 165 0 
+    26000.03c  1.0
+
+mat mWater -1.0 tmp 350 moder lwtr 1001 rgb 10 10 100 
+    1001.03c  2.0
+    8016.03c  1.0
+
+mat mWaterChann -1.0 tmp 350 moder lwtr 1001 rgb 10 10 200 
+    1001.03c  2.0
+    8016.03c  1.0
+
+mat mCR -1.757 tmp 350 rgb 50 50 50 
+    5010.03c  0.1443  % B-10
+    5011.03c  0.6386  % B-11
+    6012.03c  0.2171  % C-12
+
+% Pin definitions
+pin 1
+mF1     4.096E-01 
+mClad   4.750E-01
+mWater
+
+pin 2
+mF1     4.096E-01
+mClad   4.750E-01
+mWater
+
+pin 3
+mF1     4.096E-01
+mClad   4.750E-01
+mWater
+
+pin 4
+mSS     4.096E-01
+mWater
+
+pin 5
+mClad   6.020E-01
+mWater
+
+pin W 
+mWaterChann
+
+pin T
+mWaterChann       1.20
+mClad             1.28
+mWater
+
+pin P
+mCR         0.1753  
+mSS         0.2388
+mWater
+
+% Water channels
+lat X 1 0.0 0.0 2 2  2.59
+T T
+T T  
+
+% -------------------------------------------------------------------
+% Fuel assembly 1 - 2D -- Type 1
+% -------------------------------------------------------------------
+lat uLAT1B 1 0.0  0.0 10 10 1.295  % 10x10 lattice, pitch = 1.295 cm
+1  1  1  4  2  2  4  1  1  1
+1  1  1  1  1  1  1  1  1  1
+1  1  1  1  1  1  1  1  1  1
+4  1  1  X  X  3  1  1  1  4
+2  1  1  X  X  3  3  1  1  2
+2  1  1  3  3  X  X  1  1  2
+4  1  1  1  3  X  X  1  1  4
+1  1  1  1  1  1  1  1  1  1
+1  1  1  1  1  1  1  1  1  1
+1  1  1  4  2  2  4  1  1  1
+
+trans u X 4 % 3 is the nesting level
+
+surf s11B  sqc  0.0 0.0 6.4750 0.61
+surf s12B  sqc  0.0 0.0 6.9750 0.61
+surf s13B  sqc  0.0 0.0 7.925  
+
+
+cell c101B  uF1B  fill  uLAT1B -s11B     
+cell c102B  uF1B  mClad        -s12B   s11B   
+cell c103B  uF1B  mWaterChann  -s13B   s12B        
+
+
+% -------------------------------------------------------------------
+% Fuel assembly 1 - 2D -- Type 2
+% -------------------------------------------------------------------
+lat uLAT2B 1 0.0  0.0 10 10 1.295  % 10x10 lattice, pitch = 1.295 cm
+1  1  1  4  2  2  4  1  1  1
+1  1  1  1  1  1  1  1  1  1
+1  1  1  1  1  1  1  1  1  1
+4  1  1  1  3  X  X  1  1  4
+2  1  1  3  3  X  X  1  1  2
+2  1  1  X  X  3  3  1  1  2
+4  1  1  X  X  3  1  1  1  4
+1  1  1  1  1  1  1  1  1  1
+1  1  1  1  1  1  1  1  1  1
+1  1  1  4  2  2  4  1  1  1
+
+surf s21B  sqc  0.0 0.0 6.4750 0.61
+surf s22B  sqc  0.0 0.0 6.9750 0.61
+surf s23B  sqc  0.0 0.0 7.925  
+
+
+cell c201B  uF2B  fill  uLAT2B -s21B     
+cell c202B  uF2B  mClad        -s22B   s21B   
+cell c203B  uF2B  mWaterChann  -s23B   s22B   
+
+                   
+% -------------------------------------------------------------------
+% 2x2 cluster - 2D - Unrodded 
+% -------------------------------------------------------------------
+lat uBundle  1 0.0  0.0 2 2 15.85
+uF2B uF1B
+uF1B uF2B
+
+surf s22_1  sqc  0.0 0.0 15.85
+
+cell c22_1  uF22  fill  uBundle -s22_1  
+
+% -------------------------------------------------------------------
+% 2x2 cluster - 2D - Unrodded with Refl, to be placed in core on West side
+% -------------------------------------------------------------------
+lat uBundleRW  1 0.0  0.0 2 2 15.85
+uF2B uR
+uF1B uR
+
+surf s22_1RW  sqc  0.0 0.0 15.85
+cell c22_1RW  uFRW  fill  uBundleRW -s22_1RW  
+
+% -------------------------------------------------------------------
+% 2x2 cluster - 2D - Unrodded with Refl, to be placed in core on South side
+% -------------------------------------------------------------------
+lat uBundleRS  1 0.0  0.0 2 2 15.85
+uR   uR
+uF1B uF2B
+
+surf s22_1RS  sqc  0.0 0.0 15.85
+cell c22_1RS  uF22RS  fill  uBundleRS -s22_1RS  
+
+% -------------------------------------------------------------------
+% 2x2 cluster - 2D - Unrodded with Refl, to be placed in core on North side
+% -------------------------------------------------------------------
+lat uBundleRN  1 0.0  0.0 2 2 15.85
+uF1B uF2B
+uR   uR
+
+surf s22_1RN  sqc  0.0 0.0 15.85
+cell c22_1RN  uF22RN  fill  uBundleRN -s22_1RN  
+
+
+% -------------------------------------------------------------------
+% 2x2 cluster - 2D - Unrodded with Refl, to be placed in core on East side
+% -------------------------------------------------------------------
+lat uBundleRE  1 0.0  0.0 2 2 15.85
+uR uF1B
+uR uF2B
+
+surf s22_1RE  sqc  0.0 0.0 15.85
+cell c22_1RE  uF22RE  fill  uBundleRE -s22_1RE  
+
+% -------------------------------------------------------------------
+% 2x2 cluster - 2D - Unrodded with Refl, to be placed in core on North West side
+% -------------------------------------------------------------------
+lat uBundleRNW  1 0.0  0.0 2 2 15.85
+uR   uF1B
+uR   uR
+
+surf s22_1RNW  sqc  0.0 0.0 15.85
+cell c22_1RNW  uF22RNW  fill  uBundleRNW -s22_1RNW 
+
+
+% -------------------------------------------------------------------
+% 2x2 cluster - 2D - Unrodded with Refl, to be placed in core on North East side
+% -------------------------------------------------------------------
+lat uBundleRNE  1 0.0  0.0 2 2 15.85
+uF2B   uR
+uR   uR
+
+surf s22_1RNE  sqc  0.0 0.0 15.85
+cell c22_1RNE  uF22RNE  fill  uBundleRNE -s22_1RNE 
+
+% -------------------------------------------------------------------
+% 2x2 cluster - 2D - Unrodded with Refl, to be placed in core on South East side
+% -------------------------------------------------------------------
+lat uBundleRSE  1 0.0  0.0 2 2 15.85
+uR   uR
+uR  uF2B
+
+surf s22_1RSE  sqc  0.0 0.0 15.85
+cell c22_1RSE  uF22RSE  fill  uBundleRSE -s22_1RSE 
+
+% -------------------------------------------------------------------
+% 2x2 cluster - 2D - Unrodded with Refl, to be placed in core on South West side
+% -------------------------------------------------------------------
+lat uBundleRSW  1 0.0  0.0 2 2 15.85
+uR   uR
+uF1B uR
+
+surf s22_1RSW  sqc  0.0 0.0 15.85
+cell c22_1RSW  uF22RSW  fill  uBundleRSW -s22_1RSW 
+
+% -------------------------------------------------------------------
+% 2x2 cluster - 2D - Reflector bundle
+% -------------------------------------------------------------------
+lat uBundleRR  1 0.0  0.0 2 2 15.85
+uR   uR
+uR   uR
+
+surf s22_1RR  sqc  0.0 0.0 15.85
+cell c22_1RR  u22RR  fill  uBundleRR -s22_1RR 
+
+
+% -------------------------------------------------------------------
+% 2x2 cluster - 2D - Rodded
+% -------------------------------------------------------------------
+lat uBundleR  1 0.0  0.0 2 2 15.85
+uF2B uF1B
+uF1B uF2B
+
+surf s22_1R sqc   0.0 0.0 15.85
+surf sCR    cross 0.0 0.0 12.950 0.50 
+
+cell c22_1R  uF22R  fill  uBundle -s22_1R sCR  
+cell c2_CR   uF22R  fill uCR      -sCR 
+
+% -------------------------------------------------------------------
+% CR blade 
+% -------------------------------------------------------------------
+% -- Control Blade %
+surf sCRB cross 0.0       0.0 12.950 0.50 
+
+% =========================
+% Pane 1 = RIGHT
+% =========================
+surf sP1_1  cyl   1.5283  0.0 0.2388
+surf sP1_2  cyl   2.0263  0.0 0.2388
+surf sP1_3  cyl   2.5243  0.0 0.2388
+surf sP1_4  cyl   3.0223  0.0 0.2388
+surf sP1_5  cyl   3.5203  0.0 0.2388
+surf sP1_6  cyl   4.0183  0.0 0.2388
+surf sP1_7  cyl   4.5163  0.0 0.2388
+surf sP1_8  cyl   5.0143  0.0 0.2388
+surf sP1_9  cyl   5.5123  0.0 0.2388
+surf sP1_10 cyl   6.0103  0.0 0.2388
+surf sP1_11 cyl   6.5083  0.0 0.2388
+surf sP1_12 cyl   7.0063  0.0 0.2388
+surf sP1_13 cyl   7.5043  0.0 0.2388
+surf sP1_14 cyl   8.0023  0.0 0.2388
+surf sP1_15 cyl   8.5003  0.0 0.2388
+surf sP1_16 cyl   8.9983  0.0 0.2388
+surf sP1_17 cyl   9.4963  0.0 0.2388
+surf sP1_18 cyl   9.9943  0.0 0.2388
+surf sP1_19 cyl   10.4923 0.0 0.2388
+surf sP1_20 cyl   10.9903 0.0 0.2388
+surf sP1_21 cyl   11.4883 0.0 0.2388
+
+cell cP1_1   uCR fill P -sP1_1
+cell cP1_2   uCR fill P -sP1_2
+cell cP1_3   uCR fill P -sP1_3
+cell cP1_4   uCR fill P -sP1_4
+cell cP1_5   uCR fill P -sP1_5
+cell cP1_6   uCR fill P -sP1_6
+cell cP1_7   uCR fill P -sP1_7
+cell cP1_8   uCR fill P -sP1_8
+cell cP1_9   uCR fill P -sP1_9
+cell cP1_10   uCR fill P -sP1_10
+cell cP1_11   uCR fill P -sP1_11
+cell cP1_12   uCR fill P -sP1_12
+cell cP1_13   uCR fill P -sP1_13
+cell cP1_14   uCR fill P -sP1_14
+cell cP1_15   uCR fill P -sP1_15
+cell cP1_16   uCR fill P -sP1_16
+cell cP1_17   uCR fill P -sP1_17
+cell cP1_18   uCR fill P -sP1_18
+cell cP1_19   uCR fill P -sP1_19
+cell cP1_20   uCR fill P -sP1_20
+cell cP1_21   uCR fill P -sP1_21
+
+% =========================
+% Pane 2 = TOP
+% =========================
+surf sP2_1  cyl   0.0  1.5283   0.2388
+surf sP2_2  cyl   0.0  2.0263   0.2388
+surf sP2_3  cyl   0.0  2.5243   0.2388
+surf sP2_4  cyl   0.0  3.0223   0.2388
+surf sP2_5  cyl   0.0  3.5203   0.2388
+surf sP2_6  cyl   0.0  4.0183   0.2388
+surf sP2_7  cyl   0.0  4.5163   0.2388
+surf sP2_8  cyl   0.0  5.0143   0.2388
+surf sP2_9  cyl   0.0  5.5123   0.2388
+surf sP2_10 cyl   0.0  6.0103   0.2388
+surf sP2_11 cyl   0.0  6.5083   0.2388
+surf sP2_12 cyl   0.0  7.0063   0.2388
+surf sP2_13 cyl   0.0  7.5043   0.2388
+surf sP2_14 cyl   0.0  8.0023   0.2388
+surf sP2_15 cyl   0.0  8.5003   0.2388
+surf sP2_16 cyl   0.0  8.9983   0.2388
+surf sP2_17 cyl   0.0  9.4963   0.2388
+surf sP2_18 cyl   0.0  9.9943   0.2388
+surf sP2_19 cyl   0.0 10.4923   0.2388
+surf sP2_20 cyl   0.0 10.9903   0.2388
+surf sP2_21 cyl   0.0 11.4883   0.2388
+
+cell cP2_1   uCR fill P -sP2_1
+cell cP2_2   uCR fill P -sP2_2
+cell cP2_3   uCR fill P -sP2_3
+cell cP2_4   uCR fill P -sP2_4
+cell cP2_5   uCR fill P -sP2_5
+cell cP2_6   uCR fill P -sP2_6
+cell cP2_7   uCR fill P -sP2_7
+cell cP2_8   uCR fill P -sP2_8
+cell cP2_9   uCR fill P -sP2_9
+cell cP2_10  uCR fill P -sP2_10
+cell cP2_11  uCR fill P -sP2_11
+cell cP2_12  uCR fill P -sP2_12
+cell cP2_13  uCR fill P -sP2_13
+cell cP2_14  uCR fill P -sP2_14
+cell cP2_15  uCR fill P -sP2_15
+cell cP2_16  uCR fill P -sP2_16
+cell cP2_17  uCR fill P -sP2_17
+cell cP2_18  uCR fill P -sP2_18
+cell cP2_19  uCR fill P -sP2_19
+cell cP2_20  uCR fill P -sP2_20
+cell cP2_21  uCR fill P -sP2_21
+
+
+% =========================
+% Pane 3 = LEFT
+% =========================
+surf sP3_1  cyl   -1.5283   0.0  0.2388
+surf sP3_2  cyl   -2.0263   0.0  0.2388
+surf sP3_3  cyl   -2.5243   0.0  0.2388
+surf sP3_4  cyl   -3.0223   0.0  0.2388
+surf sP3_5  cyl   -3.5203   0.0  0.2388
+surf sP3_6  cyl   -4.0183   0.0  0.2388
+surf sP3_7  cyl   -4.5163   0.0  0.2388
+surf sP3_8  cyl   -5.0143   0.0  0.2388
+surf sP3_9  cyl   -5.5123   0.0  0.2388
+surf sP3_10 cyl   -6.0103   0.0  0.2388
+surf sP3_11 cyl   -6.5083   0.0  0.2388
+surf sP3_12 cyl   -7.0063   0.0  0.2388
+surf sP3_13 cyl   -7.5043   0.0  0.2388
+surf sP3_14 cyl   -8.0023   0.0  0.2388
+surf sP3_15 cyl   -8.5003   0.0  0.2388
+surf sP3_16 cyl   -8.9983   0.0  0.2388
+surf sP3_17 cyl   -9.4963   0.0  0.2388
+surf sP3_18 cyl   -9.9943   0.0  0.2388
+surf sP3_19 cyl   -10.4923  0.0  0.2388
+surf sP3_20 cyl   -10.9903  0.0  0.2388
+surf sP3_21 cyl   -11.4883  0.0  0.2388
+
+cell cP3_1   uCR fill P -sP3_1
+cell cP3_2   uCR fill P -sP3_2
+cell cP3_3   uCR fill P -sP3_3
+cell cP3_4   uCR fill P -sP3_4
+cell cP3_5   uCR fill P -sP3_5
+cell cP3_6   uCR fill P -sP3_6
+cell cP3_7   uCR fill P -sP3_7
+cell cP3_8   uCR fill P -sP3_8
+cell cP3_9   uCR fill P -sP3_9
+cell cP3_10  uCR fill P -sP3_10
+cell cP3_11  uCR fill P -sP3_11
+cell cP3_12  uCR fill P -sP3_12
+cell cP3_13  uCR fill P -sP3_13
+cell cP3_14  uCR fill P -sP3_14
+cell cP3_15  uCR fill P -sP3_15
+cell cP3_16  uCR fill P -sP3_16
+cell cP3_17  uCR fill P -sP3_17
+cell cP3_18  uCR fill P -sP3_18
+cell cP3_19  uCR fill P -sP3_19
+cell cP3_20  uCR fill P -sP3_20
+cell cP3_21  uCR fill P -sP3_21
+
+
+% =========================
+% Pane 4 = BOTTOM
+% =========================
+surf sP4_1  cyl   0.0  -1.5283   0.2388
+surf sP4_2  cyl   0.0  -2.0263   0.2388
+surf sP4_3  cyl   0.0  -2.5243   0.2388
+surf sP4_4  cyl   0.0  -3.0223   0.2388
+surf sP4_5  cyl   0.0  -3.5203   0.2388
+surf sP4_6  cyl   0.0  -4.0183   0.2388
+surf sP4_7  cyl   0.0  -4.5163   0.2388
+surf sP4_8  cyl   0.0  -5.0143   0.2388
+surf sP4_9  cyl   0.0  -5.5123   0.2388
+surf sP4_10 cyl   0.0  -6.0103   0.2388
+surf sP4_11 cyl   0.0  -6.5083   0.2388
+surf sP4_12 cyl   0.0  -7.0063   0.2388
+surf sP4_13 cyl   0.0  -7.5043   0.2388
+surf sP4_14 cyl   0.0  -8.0023   0.2388
+surf sP4_15 cyl   0.0  -8.5003   0.2388
+surf sP4_16 cyl   0.0  -8.9983   0.2388
+surf sP4_17 cyl   0.0  -9.4963   0.2388
+surf sP4_18 cyl   0.0  -9.9943   0.2388
+surf sP4_19 cyl   0.0 -10.4923   0.2388
+surf sP4_20 cyl   0.0 -10.9903   0.2388
+surf sP4_21 cyl   0.0 -11.4883   0.2388
+
+cell cP4_1   uCR fill P -sP4_1
+cell cP4_2   uCR fill P -sP4_2
+cell cP4_3   uCR fill P -sP4_3
+cell cP4_4   uCR fill P -sP4_4
+cell cP4_5   uCR fill P -sP4_5
+cell cP4_6   uCR fill P -sP4_6
+cell cP4_7   uCR fill P -sP4_7
+cell cP4_8   uCR fill P -sP4_8
+cell cP4_9   uCR fill P -sP4_9
+cell cP4_10  uCR fill P -sP4_10
+cell cP4_11  uCR fill P -sP4_11
+cell cP4_12  uCR fill P -sP4_12
+cell cP4_13  uCR fill P -sP4_13
+cell cP4_14  uCR fill P -sP4_14
+cell cP4_15  uCR fill P -sP4_15
+cell cP4_16  uCR fill P -sP4_16
+cell cP4_17  uCR fill P -sP4_17
+cell cP4_18  uCR fill P -sP4_18
+cell cP4_19  uCR fill P -sP4_19
+cell cP4_20  uCR fill P -sP4_20
+cell cP4_21  uCR fill P -sP4_21 
+
+cell cCRB  uCR mSS  -sCRB \
+  sP1_1 sP1_2 sP1_3 sP1_4 sP1_5 sP1_6 sP1_7 sP1_8 sP1_9 sP1_10 sP1_11 sP1_12 sP1_13 sP1_14 sP1_15 sP1_16 sP1_17 sP1_18 sP1_19 sP1_20 sP1_21 \
+  sP2_1 sP2_2 sP2_3 sP2_4 sP2_5 sP2_6 sP2_7 sP2_8 sP2_9 sP2_10 sP2_11 sP2_12 sP2_13 sP2_14 sP2_15 sP2_16 sP2_17 sP2_18 sP2_19 sP2_20 sP2_21 \
+  sP3_1 sP3_2 sP3_3 sP3_4 sP3_5 sP3_6 sP3_7 sP3_8 sP3_9 sP3_10 sP3_11 sP3_12 sP3_13 sP3_14 sP3_15 sP3_16 sP3_17 sP3_18 sP3_19 sP3_20 sP3_21 \
+  sP4_1 sP4_2 sP4_3 sP4_4 sP4_5 sP4_6 sP4_7 sP4_8 sP4_9 sP4_10 sP4_11 sP4_12 sP4_13 sP4_14 sP4_15 sP4_16 sP4_17 sP4_18 sP4_19 sP4_20 sP4_21
+
+
+% -------------------------------------------------------------------
+% Reflector
+% -------------------------------------------------------------------
+surf sR1    sqc   0.0 0.0 15.85
+
+cell cR1  uR  mWaterChann -sR1
+
+% ------------------------------------------------------------------------------
+
+lat uCore 1 0.0  0.0 10 10 31.70
+u22RR      u22RR     u22RR    uF22RSE  uF22RS  uF22RS  uF22RSW  u22RR    u22RR    u22RR 
+u22RR      u22RR     uF22RSE  uF22     uF22R   uF22    uF22R    uF22RSW  u22RR    u22RR  
+u22RR      uF22RSE   uF22     uF22R    uF22    uF22R   uF22     uF22R    uF22RSW  u22RR 
+uF22RSE    uF22      uF22R    uF22     uF22R   uF22    uF22R    uF22     uF22R    uF22RSW  
+uF22RE     uF22R     uF22     uF22R    uF22    uF22R   uF22     uF22R    uF22     uFRW 
+uF22RE     uF22      uF22R    uF22     uF22R   uF22    uF22R    uF22     uF22R    uFRW  
+uF22RNW    uF22R     uF22     uF22R    uF22    uF22R   uF22     uF22R    uF22     uF22RNE 
+u22RR      uF22RNW   uF22R    uF22     uF22R   uF22    uF22R    uF22     uF22RNE  u22RR  
+u22RR      u22RR     uF22RNW  uF22R    uF22    uF22R   uF22     uF22RNE  u22RR    u22RR 
+u22RR      u22RR     u22RR    uF22RNW  uF22RN  uF22RN  uF22RNE  u22RR    u22RR    u22RR  
+
+surf s1000   sqc      0.0 0.0 158.5
+surf top     pz       182.88
+surf z1      pz       0.0
+surf bottom  pz      -182.88
+
+cell c1000  0 fill uCore     -s1000     bottom -z1
+cell c1001  0 fill uCore     -s1000     z1 -top
+cell c1100  0 outside        -bottom 
+cell c1101  0 outside         top 
+cell c1102  0 outside         s1000    bottom -top 

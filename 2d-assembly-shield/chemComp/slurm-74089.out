@@ -1,0 +1,5 @@
+/var/spool/slurmd/job74089/slurm_script: line 9: mpirun: command not found
+
+real	0m0.042s
+user	0m0.000s
+sys	0m0.001s

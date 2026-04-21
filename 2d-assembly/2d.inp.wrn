@@ -1,19 +1,25 @@
 
- ***** Warning: Nest 5 is not used in geometry
+ ***** Note #1 Tue Mar 31 17:33:12 2026
+
+Surface "s1001": half-thickness used as radius 
+{s =  5.00000E-01} (rounded corners)
 
 
-***** Mon Mar 10 17:34:38 2025 (seed = 1741642472411, MPI task = 0)
-Warning message from function CheckNuclideData:
+ ***** Note #2 Tue Mar 31 17:33:12 2026
 
-Stable nuclide 40096.03c has 1 decay modes
-
-
-Simulation completed.
-------------------------------------------------- MPI task 0
-Mon Mar 10 17:34:45 2025  (errors: 0, warnings: 1, notes: 1)
+Nest 5 is not used in geometry
 
 
-Simulation completed.
-------------------------------------------------- MPI task 1
-Mon Mar 10 17:34:45 2025  (errors: 0, warnings: 0, notes: 0)
+***** Tue Mar 31 17:33:14 2026
+
+Error:
+
+Unable to locate cross section directory file "/cm/shared/codes/serpent/xsdata/endfb7/sss_endfb7u.xsdata"
+
+Environment variable SERPENT_DATA not set, file path must be absolute
+
+
+Simulation aborted.
+------------------------------------------------------------
+Tue Mar 31 17:33:14 2026  (errors: 1, warnings: 0, notes: 2)
 

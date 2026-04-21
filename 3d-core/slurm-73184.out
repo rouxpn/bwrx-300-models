@@ -1,0 +1,2330 @@
+
+  _                   .-=-.           .-=-.          .-==-.       
+ { }      __        .' O o '.       .' O o '.       /  -<' )--<   
+ { }    .' O'.     / o .-. O \     / o .-. O \     /  .---`       
+ { }   / .-. o\   /O  /   \  o\   /O  /   \  o\   /O /            
+  \ `-` /   \ O`-'o  /     \  O`-'o  /     \  O`-`o /             
+   `-.-`     '.____.'       `._____.'       `.____.'              
+
+Serpent 2.2
+
+A Continuous-energy Monte Carlo transport calculation calculation code
+
+ - Version 2.2.3 (October 16, 2025) -- Contact: serpent@vtt.fi
+
+ - Reference: J. Leppanen, et al. "Status of Serpent Monte Carlo code
+              in 2024." EPJ Nuclear Sci. Technol. 11 (2025) 3.
+              https://doi.org/10.1051/epjn/2024031
+
+The Serpent software is proprietary and subject to export control
+restrictions. The terms and conditions for using Serpent are outlined
+in the software licence agreement.
+
+For online documentation, see: https://serpent.vtt.fi/docs
+
+ - Compiled Nov 12 2025 19:30:53
+
+ - MPI Parallel calculation mode available
+
+ - OpenMP Parallel calculation mode available
+
+ - Geometry and mesh plotting available
+
+ - Default data path not set
+
+ - Full command used to run Serpent:
+
+   sss2 -omp 1 bwrx300.inp
+
+Begin calculation on Wed Apr 15 13:37:52 2026 at node015.rdfmg.local
+
+Reading input file "bwrx300.inp"...
+
+Checking duplicate input definitions...
+OK.
+
+
+ ***** Note #1 Wed Apr 15 13:37:52 2026
+
+Burnable material mF1 used in 3 nests is handled as a single
+       depletion zone. This differs from the methodology used in Serpent 2.2.1
+       and earlier code versions. The material sub-division can be enabled by
+       by setting fallback option 2.2.2-001, but it is recommended to use the
+       "div sep" feature instead.
+
+Creating geometry...
+OK.
+
+Counting geometry zones...
+
+The geometry consists of 8 levels. Universes belonging
+to multiple levels are listed only once.
+
+Level 0 universes:
+
+ - Universe 0: CSG
+
+Level 1 universes:
+
+ - Universe uCore: Lattice (type 1)
+
+Level 2 universes:
+
+ - Universe u22RR: CSG
+ - Universe uF22RSE: CSG
+ - Universe uF22RS: CSG
+ - Universe uF22RSW: CSG
+ - Universe uF22: CSG
+ - Universe uF22R: CSG
+ - Universe uF22RE: CSG
+ - Universe uFRW: CSG
+ - Universe uF22RNW: CSG
+ - Universe uF22RNE: CSG
+ - Universe uF22RN: CSG
+
+Level 3 universes:
+
+ - Universe uBundleRR: Lattice (type 1)
+ - Universe uBundleRSE: Lattice (type 1)
+ - Universe uBundleRS: Lattice (type 1)
+ - Universe uBundleRSW: Lattice (type 1)
+ - Universe uBundle: Lattice (type 1)
+ - Universe uCR: CSG
+ - Universe uBundleRE: Lattice (type 1)
+ - Universe uBundleRW: Lattice (type 1)
+ - Universe uBundleRNW: Lattice (type 1)
+ - Universe uBundleRNE: Lattice (type 1)
+ - Universe uBundleRN: Lattice (type 1)
+
+Level 4 universes:
+
+ - Universe uR: CSG
+ - Universe uF2B: CSG
+ - Universe uF1B: CSG
+ - Universe P: Nest
+
+Level 5 universes:
+
+ - Universe uLAT2B: Lattice (type 1)
+ - Universe uLAT1B: Lattice (type 1)
+
+Level 6 universes:
+
+ - Universe 1: Nest
+ - Universe 4: Nest
+ - Universe 2: Nest
+ - Universe 3: Nest
+ - Universe X: Lattice (type 1)
+
+Level 7 universes:
+
+ - Universe T: Nest
+
+
+ ***** Note #2 Wed Apr 15 13:37:52 2026
+
+Nest 5 is not used in geometry
+
+
+ ***** Note #3 Wed Apr 15 13:37:52 2026
+
+Nest W is not used in geometry
+
+
+ ***** Note #4 Wed Apr 15 13:37:52 2026
+
+Lattice uBundleR is not used in geometry
+
+Processing cells...
+OK.
+
+Linking materials to geometry...
+OK.
+
+Processing detector definitions...
+OK.
+
+
+ ***** Note #5 Wed Apr 15 13:37:52 2026
+
+Axial repeated boundary condition not applied to surface s1000
+
+Counting cells...
+OK.
+
+Processing data for group constant generation:
+
+ - 168 energy groups in micro-group structure
+ - 2 energy groups in macro-group structure
+ - B1 fundamental mode calculation is not run
+ - Group constants generated in 1 universes
+ - Discontinuity factors are not calculated
+ - Pin-power distributions are not calculated
+ - Albedos are not calculated
+ - Poison cross sections are not calculated
+
+Plotting geometry:
+
+   0% complete
+  33% complete
+  67% complete
+ 100% complete
+
+Reading ACE directory files...
+OK.
+
+Reading neutron-induced fission yields...
+OK.
+
+Reading spontaneous fission yields...
+OK.
+
+Adding nuclides in material mF1...
+
+Nuclide  92235.00c -- uranium 235 at 300K (U-235)
+Nuclide  92238.00c -- uranium 238 at 300K (U-238)
+Nuclide   8016.00c -- oxygen 16 at 300K (O-16)
+
+Adding nuclides in material mClad...
+
+Nuclide  40090.00c -- zirconium 90 at 350K (Zr-90)
+Nuclide  40091.00c -- zirconium 91 at 350K (Zr-91)
+Nuclide  40092.00c -- zirconium 92 at 350K (Zr-92)
+Nuclide  40094.00c -- zirconium 94 at 350K (Zr-94)
+Nuclide  40096.00c -- zirconium 96 at 350K (Zr-96)
+
+Adding nuclides in material mSS...
+
+Nuclide  26054.00c -- iron 54 at 350K (Fe-54)
+Nuclide  26056.00c -- iron 56 at 350K (Fe-56)
+Nuclide  26057.00c -- iron 57 at 350K (Fe-57)
+Nuclide  26058.00c -- iron 58 at 350K (Fe-58)
+
+Adding nuclides in material mWater...
+
+Nuclide   1001.00c -- hydrogen at 350K (H-1)
+Nuclide   8016.00c -- oxygen 16 at 350K (O-16)
+
+Adding nuclides in material mWaterChann...
+
+Adding nuclides in material mCR...
+
+Nuclide   5010.00c -- boron 10 at 350K (B-10)
+Nuclide   5011.00c -- boron 11 at 350K (B-11)
+Nuclide   6012.00c -- carbon 12 at 350K (C-12)
+
+Running Doppler-broadening preprocessor:
+
+Adjusting nuclide  92235.00c temperature from 294K to 300K...
+Adjusting nuclide  92238.00c temperature from 294K to 300K...
+Adjusting nuclide   8016.00c temperature from 294K to 300K...
+Adjusting nuclide  40090.00c temperature from 294K to 350K...
+Adjusting nuclide  40091.00c temperature from 294K to 350K...
+Adjusting nuclide  40092.00c temperature from 294K to 350K...
+Adjusting nuclide  40094.00c temperature from 294K to 350K...
+Adjusting nuclide  40096.00c temperature from 294K to 350K...
+Adjusting nuclide  26054.00c temperature from 294K to 350K...
+Adjusting nuclide  26056.00c temperature from 294K to 350K...
+Adjusting nuclide  26057.00c temperature from 294K to 350K...
+Adjusting nuclide  26058.00c temperature from 294K to 350K...
+Adjusting nuclide   1001.00c temperature from 294K to 350K...
+Adjusting nuclide   8016.00c temperature from 294K to 350K...
+Adjusting nuclide   5010.00c temperature from 294K to 350K...
+Adjusting nuclide   5011.00c temperature from 294K to 350K...
+Adjusting nuclide   6012.00c temperature from 294K to 350K...
+
+Adding thermal scattering data...
+
+Nuclide  h-h2o.40t -- hydrogen at 294K (H-1)
+
+Checking data and printing output...
+OK.
+
+Sharing input data to MPI tasks...
+OK.
+
+Adding points to unionized energy grids:
+
+  1001.00c -- Points added in neutron grid: 633
+  1001.00s -- Points added in neutron grid: 102
+  5010.00c -- Points added in neutron grid: 344
+  5011.00c -- Points added in neutron grid: 2926
+  6012.00c -- Points added in neutron grid: 823
+  8016.00c -- Points added in neutron grid: 1620
+ 26054.00c -- Points added in neutron grid: 36606
+ 26056.00c -- Points added in neutron grid: 41298
+ 26057.00c -- Points added in neutron grid: 11561
+ 26058.00c -- Points added in neutron grid: 20668
+ 40090.00c -- Points added in neutron grid: 13566
+ 40091.00c -- Points added in neutron grid: 19111
+ 40092.00c -- Points added in neutron grid: 14442
+ 40094.00c -- Points added in neutron grid: 11268
+ 40096.00c -- Points added in neutron grid: 5596
+ 92235.00c -- Points added in neutron grid: 75532
+ 92238.00c -- Points added in neutron grid: 153235
+
+Generating unionized energy grid:
+
+ - Unionization performed without grid thinning
+   between 1.00E-11 and 20.0 MeV.
+
+ - Final neutron grid size: 409241 points.
+
+ - 10.93 Mb of memory allocated for grid data
+
+Processing cross sections and ENDF reaction laws...
+
+Nuclide   1001.00c -- hydrogen at 350K (H-1)
+Nuclide   1001.00s -- hydrogen at 350K (H-1)
+Nuclide   1001.00s -- hydrogen at 350K (H-1)
+Nuclide   5010.00c -- boron 10 at 350K (B-10)
+Nuclide   5011.00c -- boron 11 at 350K (B-11)
+Nuclide   6012.00c -- carbon 12 at 350K (C-12)
+Nuclide   8016.00c -- oxygen 16 at 300K (O-16)
+Nuclide   8016.00c -- oxygen 16 at 350K (O-16)
+Nuclide  26054.00c -- iron 54 at 350K (Fe-54)
+Nuclide  26056.00c -- iron 56 at 350K (Fe-56)
+Nuclide  26057.00c -- iron 57 at 350K (Fe-57)
+Nuclide  26058.00c -- iron 58 at 350K (Fe-58)
+Nuclide  40090.00c -- zirconium 90 at 350K (Zr-90)
+Nuclide  40091.00c -- zirconium 91 at 350K (Zr-91)
+Nuclide  40092.00c -- zirconium 92 at 350K (Zr-92)
+Nuclide  40094.00c -- zirconium 94 at 350K (Zr-94)
+Nuclide  40096.00c -- zirconium 96 at 350K (Zr-96)
+Nuclide  92235.00c -- uranium 235 at 300K (U-235)
+Nuclide  92238.00c -- uranium 238 at 300K (U-238)
+
+SUMMARY -- 19 nuclides included in calculation:
+
+ - 19 transport nuclides
+ - Neutron energy cut-offs at 1.00E-11 and 20.0 MeV
+ - 470 transport reactions
+ - 555 special reactions
+ - 5 decay reactions
+ - 764.07 Mb of memory allocated for data
+
+Normalizing compositions and processing mixtures...
+OK.
+
+Allocating memory for macroscopic cross section data...
+OK.
+
+Allocating memory for particle structures...
+OK.
+
+Calculating maximum densities...
+OK.
+
+Performing density cut-off...
+OK.
+
+Sorting material-wise reaction lists:
+
+   0% complete
+  17% complete
+  33% complete
+  50% complete
+  67% complete
+  83% complete
+ 100% complete
+
+Calculating macroscopic cross sections:
+
+   0% complete
+  17% complete
+  33% complete
+  50% complete
+  67% complete
+  83% complete
+ 100% complete
+
+Waiting for results from other MPI tasks...
+OK.
+
+Calculating DT neutron majorant cross section:
+
+   0% complete
+  17% complete
+  33% complete
+  50% complete
+  67% complete
+  83% complete
+ 100% complete
+
+Clearing results and statistics...
+OK.
+
+Sampling initial source...
+OK.
+
+Inactive cycle   1 /  50: k-eff = 1.00000
+Inactive cycle   2 /  50: k-eff = 1.24130
+Inactive cycle   3 /  50: k-eff = 1.27213
+Inactive cycle   4 /  50: k-eff = 1.27888
+Inactive cycle   5 /  50: k-eff = 1.28775
+Inactive cycle   6 /  50: k-eff = 1.30122
+Inactive cycle   7 /  50: k-eff = 1.29812
+Inactive cycle   8 /  50: k-eff = 1.29361
+Inactive cycle   9 /  50: k-eff = 1.31006
+Inactive cycle  10 /  50: k-eff = 1.29586
+Inactive cycle  11 /  50: k-eff = 1.30760
+Inactive cycle  12 /  50: k-eff = 1.30771
+Inactive cycle  13 /  50: k-eff = 1.31095
+Inactive cycle  14 /  50: k-eff = 1.31210
+Inactive cycle  15 /  50: k-eff = 1.30906
+Inactive cycle  16 /  50: k-eff = 1.31448
+Inactive cycle  17 /  50: k-eff = 1.31164
+Inactive cycle  18 /  50: k-eff = 1.32310
+Inactive cycle  19 /  50: k-eff = 1.30863
+Inactive cycle  20 /  50: k-eff = 1.31415
+Inactive cycle  21 /  50: k-eff = 1.31147
+Inactive cycle  22 /  50: k-eff = 1.31396
+Inactive cycle  23 /  50: k-eff = 1.31725
+Inactive cycle  24 /  50: k-eff = 1.32220
+Inactive cycle  25 /  50: k-eff = 1.31948
+Inactive cycle  26 /  50: k-eff = 1.32164
+Inactive cycle  27 /  50: k-eff = 1.32579
+Inactive cycle  28 /  50: k-eff = 1.30720
+Inactive cycle  29 /  50: k-eff = 1.31389
+Inactive cycle  30 /  50: k-eff = 1.31671
+Inactive cycle  31 /  50: k-eff = 1.32058
+Inactive cycle  32 /  50: k-eff = 1.31028
+Inactive cycle  33 /  50: k-eff = 1.31845
+Inactive cycle  34 /  50: k-eff = 1.31067
+Inactive cycle  35 /  50: k-eff = 1.31573
+Inactive cycle  36 /  50: k-eff = 1.31313
+Inactive cycle  37 /  50: k-eff = 1.31505
+Inactive cycle  38 /  50: k-eff = 1.31810
+Inactive cycle  39 /  50: k-eff = 1.30890
+Inactive cycle  40 /  50: k-eff = 1.32167
+Inactive cycle  41 /  50: k-eff = 1.32159
+Inactive cycle  42 /  50: k-eff = 1.31662
+Inactive cycle  43 /  50: k-eff = 1.31944
+Inactive cycle  44 /  50: k-eff = 1.32258
+Inactive cycle  45 /  50: k-eff = 1.31517
+Inactive cycle  46 /  50: k-eff = 1.32441
+Inactive cycle  47 /  50: k-eff = 1.32051
+Inactive cycle  48 /  50: k-eff = 1.31845
+Inactive cycle  49 /  50: k-eff = 1.32373
+Inactive cycle  50 /  50: k-eff = 1.31700
+
+----- Begin active cycles -----
+
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle    1 / 100  Source neutrons : 50151
+
+Running time :                  0:15:56
+Estimated running time :        0:56:12
+Estimated running time left :   0:40:16
+
+Estimated relative CPU usage :    98.7%
+
+k-eff (analog)    = 1.32098 +/- 0.00000  [1.32098  1.32098]
+k-eff (implicit)  = 1.31628 +/- 0.00000  [1.31628  1.31628]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle    2 / 100  Source neutrons : 49823
+
+Running time :                  0:16:19
+Estimated running time :        0:54:46
+Estimated running time left :   0:38:27
+
+Estimated relative CPU usage :    98.8%
+
+k-eff (analog)    = 1.31864 +/- 0.00234  [1.31406  1.32322]
+k-eff (implicit)  = 1.31854 +/- 0.00225  [1.31412  1.32295]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle    3 / 100  Source neutrons : 50276
+
+Running time :                  0:16:37
+Estimated running time :        0:51:44
+Estimated running time left :   0:35:06
+
+Estimated relative CPU usage :    99.0%
+
+k-eff (analog)    = 1.32028 +/- 0.00213  [1.31612  1.32445]
+k-eff (implicit)  = 1.32025 +/- 0.00216  [1.31603  1.32448]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle    4 / 100  Source neutrons : 49898
+
+Running time :                  0:16:52
+Estimated running time :        0:48:50
+Estimated running time left :   0:31:58
+
+Estimated relative CPU usage :    99.3%
+
+k-eff (analog)    = 1.32043 +/- 0.00151  [1.31747  1.32339]
+k-eff (implicit)  = 1.32068 +/- 0.00158  [1.31758  1.32378]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle    5 / 100  Source neutrons : 50127
+
+Running time :                  0:17:09
+Estimated running time :        0:47:50
+Estimated running time left :   0:30:41
+
+Estimated relative CPU usage :    99.2%
+
+k-eff (analog)    = 1.32119 +/- 0.00139  [1.31846  1.32392]
+k-eff (implicit)  = 1.32031 +/- 0.00128  [1.31780  1.32282]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle    6 / 100  Source neutrons : 50284
+
+Running time :                  0:17:25
+Estimated running time :        0:46:59
+Estimated running time left :   0:29:33
+
+Estimated relative CPU usage :    99.3%
+
+k-eff (analog)    = 1.32295 +/- 0.00210  [1.31884  1.32706]
+k-eff (implicit)  = 1.32056 +/- 0.00108  [1.31845  1.32267]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle    7 / 100  Source neutrons : 49611
+
+Running time :                  0:17:41
+Estimated running time :        0:46:13
+Estimated running time left :   0:28:32
+
+Estimated relative CPU usage :    99.3%
+
+k-eff (analog)    = 1.32272 +/- 0.00179  [1.31923  1.32622]
+k-eff (implicit)  = 1.32043 +/- 0.00092  [1.31863  1.32223]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle    8 / 100  Source neutrons : 50059
+
+Running time :                  0:17:57
+Estimated running time :        0:45:48
+Estimated running time left :   0:27:51
+
+Estimated relative CPU usage :    99.3%
+
+k-eff (analog)    = 1.32275 +/- 0.00155  [1.31972  1.32578]
+k-eff (implicit)  = 1.32038 +/- 0.00080  [1.31881  1.32194]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle    9 / 100  Source neutrons : 49385
+
+Running time :                  0:18:13
+Estimated running time :        0:45:27
+Estimated running time left :   0:27:13
+
+Estimated relative CPU usage :    99.3%
+
+k-eff (analog)    = 1.32097 +/- 0.00225  [1.31656  1.32537]
+k-eff (implicit)  = 1.32029 +/- 0.00071  [1.31890  1.32168]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   10 / 100  Source neutrons : 50443
+
+Running time :                  0:18:29
+Estimated running time :        0:45:06
+Estimated running time left :   0:26:37
+
+Estimated relative CPU usage :    99.2%
+
+k-eff (analog)    = 1.32069 +/- 0.00203  [1.31672  1.32467]
+k-eff (implicit)  = 1.32004 +/- 0.00068  [1.31871  1.32138]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   11 / 100  Source neutrons : 50079
+
+Running time :                  0:18:42
+Estimated running time :        0:44:25
+Estimated running time left :   0:25:42
+
+Estimated relative CPU usage :    99.4%
+
+k-eff (analog)    = 1.32066 +/- 0.00184  [1.31706  1.32426]
+k-eff (implicit)  = 1.31959 +/- 0.00076  [1.31810  1.32109]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   12 / 100  Source neutrons : 50218
+
+Running time :                  0:18:54
+Estimated running time :        0:43:34
+Estimated running time left :   0:24:40
+
+Estimated relative CPU usage :    99.4%
+
+k-eff (analog)    = 1.32111 +/- 0.00174  [1.31771  1.32451]
+k-eff (implicit)  = 1.31972 +/- 0.00071  [1.31833  1.32111]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   13 / 100  Source neutrons : 50063
+
+Running time :                  0:19:05
+Estimated running time :        0:42:52
+Estimated running time left :   0:23:46
+
+Estimated relative CPU usage :    99.4%
+
+k-eff (analog)    = 1.32162 +/- 0.00168  [1.31834  1.32491]
+k-eff (implicit)  = 1.31966 +/- 0.00065  [1.31839  1.32094]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   14 / 100  Source neutrons : 49665
+
+Running time :                  0:19:16
+Estimated running time :        0:42:14
+Estimated running time left :   0:22:58
+
+Estimated relative CPU usage :    99.4%
+
+k-eff (analog)    = 1.32143 +/- 0.00156  [1.31836  1.32449]
+k-eff (implicit)  = 1.31967 +/- 0.00060  [1.31848  1.32085]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   15 / 100  Source neutrons : 50166
+
+Running time :                  0:19:28
+Estimated running time :        0:41:50
+Estimated running time left :   0:22:21
+
+Estimated relative CPU usage :    99.2%
+
+k-eff (analog)    = 1.32155 +/- 0.00146  [1.31868  1.32441]
+k-eff (implicit)  = 1.31986 +/- 0.00059  [1.31870  1.32103]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   16 / 100  Source neutrons : 50069
+
+Running time :                  0:19:44
+Estimated running time :        0:41:48
+Estimated running time left :   0:22:04
+
+Estimated relative CPU usage :    98.8%
+
+k-eff (analog)    = 1.32177 +/- 0.00138  [1.31905  1.32448]
+k-eff (implicit)  = 1.32015 +/- 0.00062  [1.31892  1.32137]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   17 / 100  Source neutrons : 50125
+
+Running time :                  0:20:00
+Estimated running time :        0:41:49
+Estimated running time left :   0:21:49
+
+Estimated relative CPU usage :    98.8%
+
+k-eff (analog)    = 1.32216 +/- 0.00136  [1.31950  1.32482]
+k-eff (implicit)  = 1.32030 +/- 0.00061  [1.31911  1.32150]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   18 / 100  Source neutrons : 49786
+
+Running time :                  0:20:16
+Estimated running time :        0:41:49
+Estimated running time left :   0:21:33
+
+Estimated relative CPU usage :    98.8%
+
+k-eff (analog)    = 1.32219 +/- 0.00128  [1.31968  1.32470]
+k-eff (implicit)  = 1.32070 +/- 0.00070  [1.31934  1.32206]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   19 / 100  Source neutrons : 49951
+
+Running time :                  0:20:32
+Estimated running time :        0:41:51
+Estimated running time left :   0:21:19
+
+Estimated relative CPU usage :    98.8%
+
+k-eff (analog)    = 1.32214 +/- 0.00121  [1.31977  1.32452]
+k-eff (implicit)  = 1.32108 +/- 0.00076  [1.31959  1.32256]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   20 / 100  Source neutrons : 50261
+
+Running time :                  0:20:47
+Estimated running time :        0:41:50
+Estimated running time left :   0:21:02
+
+Estimated relative CPU usage :    98.9%
+
+k-eff (analog)    = 1.32245 +/- 0.00119  [1.32012  1.32478]
+k-eff (implicit)  = 1.32117 +/- 0.00073  [1.31975  1.32259]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   21 / 100  Source neutrons : 49682
+
+Running time :                  0:21:03
+Estimated running time :        0:41:49
+Estimated running time left :   0:20:46
+
+Estimated relative CPU usage :    98.9%
+
+k-eff (analog)    = 1.32233 +/- 0.00114  [1.32010  1.32456]
+k-eff (implicit)  = 1.32128 +/- 0.00070  [1.31991  1.32265]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   22 / 100  Source neutrons : 50265
+
+Running time :                  0:21:18
+Estimated running time :        0:41:45
+Estimated running time left :   0:20:27
+
+Estimated relative CPU usage :    98.9%
+
+k-eff (analog)    = 1.32253 +/- 0.00110  [1.32037  1.32470]
+k-eff (implicit)  = 1.32129 +/- 0.00067  [1.31999  1.32260]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   23 / 100  Source neutrons : 49579
+
+Running time :                  0:21:33
+Estimated running time :        0:41:41
+Estimated running time left :   0:20:08
+
+Estimated relative CPU usage :    98.9%
+
+k-eff (analog)    = 1.32224 +/- 0.00110  [1.32009  1.32439]
+k-eff (implicit)  = 1.32132 +/- 0.00064  [1.32007  1.32257]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   24 / 100  Source neutrons : 49954
+
+Running time :                  0:21:48
+Estimated running time :        0:41:40
+Estimated running time left :   0:19:51
+
+Estimated relative CPU usage :    98.9%
+
+k-eff (analog)    = 1.32191 +/- 0.00110  [1.31976  1.32407]
+k-eff (implicit)  = 1.32122 +/- 0.00062  [1.32001  1.32243]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   25 / 100  Source neutrons : 50597
+
+Running time :                  0:22:04
+Estimated running time :        0:41:40
+Estimated running time left :   0:19:36
+
+Estimated relative CPU usage :    98.9%
+
+k-eff (analog)    = 1.32224 +/- 0.00110  [1.32008  1.32441]
+k-eff (implicit)  = 1.32122 +/- 0.00059  [1.32006  1.32238]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   26 / 100  Source neutrons : 49820
+
+Running time :                  0:22:19
+Estimated running time :        0:41:39
+Estimated running time left :   0:19:19
+
+Estimated relative CPU usage :    98.9%
+
+k-eff (analog)    = 1.32236 +/- 0.00107  [1.32027  1.32445]
+k-eff (implicit)  = 1.32131 +/- 0.00058  [1.32018  1.32245]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   27 / 100  Source neutrons : 50134
+
+Running time :                  0:22:35
+Estimated running time :        0:41:39
+Estimated running time left :   0:19:03
+
+Estimated relative CPU usage :    98.8%
+
+k-eff (analog)    = 1.32260 +/- 0.00106  [1.32053  1.32467]
+k-eff (implicit)  = 1.32115 +/- 0.00058  [1.32002  1.32229]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   28 / 100  Source neutrons : 49567
+
+Running time :                  0:22:50
+Estimated running time :        0:41:37
+Estimated running time left :   0:18:47
+
+Estimated relative CPU usage :    98.9%
+
+k-eff (analog)    = 1.32242 +/- 0.00103  [1.32039  1.32445]
+k-eff (implicit)  = 1.32113 +/- 0.00056  [1.32004  1.32223]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   29 / 100  Source neutrons : 50208
+
+Running time :                  0:23:05
+Estimated running time :        0:41:36
+Estimated running time left :   0:18:30
+
+Estimated relative CPU usage :    98.9%
+
+k-eff (analog)    = 1.32243 +/- 0.00100  [1.32048  1.32439]
+k-eff (implicit)  = 1.32109 +/- 0.00054  [1.32003  1.32215]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   30 / 100  Source neutrons : 50229
+
+Running time :                  0:23:20
+Estimated running time :        0:41:33
+Estimated running time left :   0:18:12
+
+Estimated relative CPU usage :    99.0%
+
+k-eff (analog)    = 1.32265 +/- 0.00099  [1.32071  1.32459]
+k-eff (implicit)  = 1.32109 +/- 0.00052  [1.32006  1.32211]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   31 / 100  Source neutrons : 49781
+
+Running time :                  0:23:35
+Estimated running time :        0:41:30
+Estimated running time left :   0:17:55
+
+Estimated relative CPU usage :    98.9%
+
+k-eff (analog)    = 1.32267 +/- 0.00096  [1.32079  1.32454]
+k-eff (implicit)  = 1.32110 +/- 0.00050  [1.32011  1.32209]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   32 / 100  Source neutrons : 49840
+
+Running time :                  0:23:50
+Estimated running time :        0:41:30
+Estimated running time left :   0:17:39
+
+Estimated relative CPU usage :    98.8%
+
+k-eff (analog)    = 1.32255 +/- 0.00093  [1.32072  1.32438]
+k-eff (implicit)  = 1.32121 +/- 0.00050  [1.32023  1.32219]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   33 / 100  Source neutrons : 50618
+
+Running time :                  0:24:06
+Estimated running time :        0:41:31
+Estimated running time left :   0:17:24
+
+Estimated relative CPU usage :    98.8%
+
+k-eff (analog)    = 1.32293 +/- 0.00098  [1.32101  1.32486]
+k-eff (implicit)  = 1.32114 +/- 0.00049  [1.32017  1.32210]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   34 / 100  Source neutrons : 49301
+
+Running time :                  0:24:22
+Estimated running time :        0:41:30
+Estimated running time left :   0:17:08
+
+Estimated relative CPU usage :    98.8%
+
+k-eff (analog)    = 1.32274 +/- 0.00097  [1.32084  1.32465]
+k-eff (implicit)  = 1.32119 +/- 0.00048  [1.32025  1.32213]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   35 / 100  Source neutrons : 50302
+
+Running time :                  0:24:38
+Estimated running time :        0:41:32
+Estimated running time left :   0:16:54
+
+Estimated relative CPU usage :    98.7%
+
+k-eff (analog)    = 1.32279 +/- 0.00094  [1.32094  1.32465]
+k-eff (implicit)  = 1.32122 +/- 0.00047  [1.32031  1.32214]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   36 / 100  Source neutrons : 50136
+
+Running time :                  0:24:54
+Estimated running time :        0:41:33
+Estimated running time left :   0:16:39
+
+Estimated relative CPU usage :    98.8%
+
+k-eff (analog)    = 1.32294 +/- 0.00093  [1.32112  1.32476]
+k-eff (implicit)  = 1.32121 +/- 0.00045  [1.32032  1.32210]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   37 / 100  Source neutrons : 49560
+
+Running time :                  0:25:08
+Estimated running time :        0:41:29
+Estimated running time left :   0:16:21
+
+Estimated relative CPU usage :    99.0%
+
+k-eff (analog)    = 1.32276 +/- 0.00092  [1.32096  1.32457]
+k-eff (implicit)  = 1.32125 +/- 0.00044  [1.32038  1.32211]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   38 / 100  Source neutrons : 50193
+
+Running time :                  0:25:24
+Estimated running time :        0:41:30
+Estimated running time left :   0:16:06
+
+Estimated relative CPU usage :    98.9%
+
+k-eff (analog)    = 1.32273 +/- 0.00090  [1.32097  1.32449]
+k-eff (implicit)  = 1.32120 +/- 0.00043  [1.32035  1.32205]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   39 / 100  Source neutrons : 49806
+
+Running time :                  0:25:39
+Estimated running time :        0:41:30
+Estimated running time left :   0:15:50
+
+Estimated relative CPU usage :    98.9%
+
+k-eff (analog)    = 1.32257 +/- 0.00089  [1.32082  1.32431]
+k-eff (implicit)  = 1.32120 +/- 0.00042  [1.32037  1.32203]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   40 / 100  Source neutrons : 50010
+
+Running time :                  0:25:55
+Estimated running time :        0:41:30
+Estimated running time left :   0:15:34
+
+Estimated relative CPU usage :    98.9%
+
+k-eff (analog)    = 1.32242 +/- 0.00088  [1.32069  1.32414]
+k-eff (implicit)  = 1.32122 +/- 0.00041  [1.32041  1.32202]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   41 / 100  Source neutrons : 49993
+
+Running time :                  0:26:10
+Estimated running time :        0:41:30
+Estimated running time left :   0:15:19
+
+Estimated relative CPU usage :    98.9%
+
+k-eff (analog)    = 1.32227 +/- 0.00087  [1.32057  1.32398]
+k-eff (implicit)  = 1.32126 +/- 0.00040  [1.32047  1.32205]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   42 / 100  Source neutrons : 50620
+
+Running time :                  0:26:26
+Estimated running time :        0:41:30
+Estimated running time left :   0:15:04
+
+Estimated relative CPU usage :    98.9%
+
+k-eff (analog)    = 1.32252 +/- 0.00089  [1.32079  1.32426]
+k-eff (implicit)  = 1.32128 +/- 0.00039  [1.32051  1.32205]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   43 / 100  Source neutrons : 49802
+
+Running time :                  0:26:42
+Estimated running time :        0:41:30
+Estimated running time left :   0:14:48
+
+Estimated relative CPU usage :    98.9%
+
+k-eff (analog)    = 1.32264 +/- 0.00087  [1.32093  1.32435]
+k-eff (implicit)  = 1.32121 +/- 0.00039  [1.32044  1.32198]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   44 / 100  Source neutrons : 49623
+
+Running time :                  0:26:57
+Estimated running time :        0:41:30
+Estimated running time left :   0:14:32
+
+Estimated relative CPU usage :    98.9%
+
+k-eff (analog)    = 1.32252 +/- 0.00086  [1.32083  1.32420]
+k-eff (implicit)  = 1.32136 +/- 0.00041  [1.32055  1.32217]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   45 / 100  Source neutrons : 50048
+
+Running time :                  0:27:12
+Estimated running time :        0:41:28
+Estimated running time left :   0:14:15
+
+Estimated relative CPU usage :    99.0%
+
+k-eff (analog)    = 1.32244 +/- 0.00084  [1.32078  1.32409]
+k-eff (implicit)  = 1.32133 +/- 0.00040  [1.32054  1.32212]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   46 / 100  Source neutrons : 50217
+
+Running time :                  0:27:26
+Estimated running time :        0:41:24
+Estimated running time left :   0:13:58
+
+Estimated relative CPU usage :    99.1%
+
+k-eff (analog)    = 1.32248 +/- 0.00083  [1.32086  1.32410]
+k-eff (implicit)  = 1.32126 +/- 0.00040  [1.32048  1.32205]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   47 / 100  Source neutrons : 49884
+
+Running time :                  0:27:39
+Estimated running time :        0:41:20
+Estimated running time left :   0:13:40
+
+Estimated relative CPU usage :    99.1%
+
+k-eff (analog)    = 1.32246 +/- 0.00081  [1.32087  1.32404]
+k-eff (implicit)  = 1.32130 +/- 0.00039  [1.32053  1.32207]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   48 / 100  Source neutrons : 49954
+
+Running time :                  0:27:52
+Estimated running time :        0:41:15
+Estimated running time left :   0:13:22
+
+Estimated relative CPU usage :    99.2%
+
+k-eff (analog)    = 1.32241 +/- 0.00079  [1.32085  1.32396]
+k-eff (implicit)  = 1.32137 +/- 0.00039  [1.32060  1.32213]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   49 / 100  Source neutrons : 50174
+
+Running time :                  0:28:05
+Estimated running time :        0:41:10
+Estimated running time left :   0:13:04
+
+Estimated relative CPU usage :    99.2%
+
+k-eff (analog)    = 1.32246 +/- 0.00078  [1.32093  1.32398]
+k-eff (implicit)  = 1.32138 +/- 0.00038  [1.32063  1.32213]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   50 / 100  Source neutrons : 49838
+
+Running time :                  0:28:19
+Estimated running time :        0:41:05
+Estimated running time left :   0:12:46
+
+Estimated relative CPU usage :    99.2%
+
+k-eff (analog)    = 1.32242 +/- 0.00076  [1.32092  1.32392]
+k-eff (implicit)  = 1.32136 +/- 0.00037  [1.32063  1.32209]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   51 / 100  Source neutrons : 49866
+
+Running time :                  0:28:32
+Estimated running time :        0:41:01
+Estimated running time left :   0:12:29
+
+Estimated relative CPU usage :    98.3%
+
+k-eff (analog)    = 1.32231 +/- 0.00076  [1.32082  1.32379]
+k-eff (implicit)  = 1.32132 +/- 0.00037  [1.32059  1.32204]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   52 / 100  Source neutrons : 50121
+
+Running time :                  0:28:45
+Estimated running time :        0:40:57
+Estimated running time left :   0:12:11
+
+Estimated relative CPU usage :    99.2%
+
+k-eff (analog)    = 1.32227 +/- 0.00074  [1.32081  1.32372]
+k-eff (implicit)  = 1.32126 +/- 0.00037  [1.32054  1.32198]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   53 / 100  Source neutrons : 49979
+
+Running time :                  0:28:58
+Estimated running time :        0:40:53
+Estimated running time left :   0:11:54
+
+Estimated relative CPU usage :    99.2%
+
+k-eff (analog)    = 1.32222 +/- 0.00073  [1.32078  1.32365]
+k-eff (implicit)  = 1.32122 +/- 0.00036  [1.32051  1.32193]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   54 / 100  Source neutrons : 49885
+
+Running time :                  0:29:11
+Estimated running time :        0:40:48
+Estimated running time left :   0:11:37
+
+Estimated relative CPU usage :    99.2%
+
+k-eff (analog)    = 1.32211 +/- 0.00073  [1.32069  1.32353]
+k-eff (implicit)  = 1.32129 +/- 0.00036  [1.32058  1.32200]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   55 / 100  Source neutrons : 50077
+
+Running time :                  0:29:24
+Estimated running time :        0:40:46
+Estimated running time left :   0:11:21
+
+Estimated relative CPU usage :    99.1%
+
+k-eff (analog)    = 1.32205 +/- 0.00071  [1.32064  1.32345]
+k-eff (implicit)  = 1.32125 +/- 0.00036  [1.32055  1.32195]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   56 / 100  Source neutrons : 50500
+
+Running time :                  0:29:39
+Estimated running time :        0:40:44
+Estimated running time left :   0:11:05
+
+Estimated relative CPU usage :    99.1%
+
+k-eff (analog)    = 1.32222 +/- 0.00072  [1.32080  1.32364]
+k-eff (implicit)  = 1.32118 +/- 0.00036  [1.32048  1.32188]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   57 / 100  Source neutrons : 49630
+
+Running time :                  0:29:53
+Estimated running time :        0:40:42
+Estimated running time left :   0:10:49
+
+Estimated relative CPU usage :    99.1%
+
+k-eff (analog)    = 1.32221 +/- 0.00071  [1.32082  1.32361]
+k-eff (implicit)  = 1.32124 +/- 0.00036  [1.32054  1.32194]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   58 / 100  Source neutrons : 50321
+
+Running time :                  0:30:05
+Estimated running time :        0:40:38
+Estimated running time left :   0:10:32
+
+Estimated relative CPU usage :    99.3%
+
+k-eff (analog)    = 1.32235 +/- 0.00071  [1.32096  1.32375]
+k-eff (implicit)  = 1.32128 +/- 0.00035  [1.32059  1.32197]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   59 / 100  Source neutrons : 49954
+
+Running time :                  0:30:18
+Estimated running time :        0:40:33
+Estimated running time left :   0:10:15
+
+Estimated relative CPU usage :    99.2%
+
+k-eff (analog)    = 1.32247 +/- 0.00071  [1.32108  1.32386]
+k-eff (implicit)  = 1.32128 +/- 0.00035  [1.32061  1.32196]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   60 / 100  Source neutrons : 49813
+
+Running time :                  0:30:36
+Estimated running time :        0:40:38
+Estimated running time left :   0:10:02
+
+Estimated relative CPU usage :    98.8%
+
+k-eff (analog)    = 1.32250 +/- 0.00070  [1.32113  1.32387]
+k-eff (implicit)  = 1.32129 +/- 0.00034  [1.32063  1.32196]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   61 / 100  Source neutrons : 49850
+
+Running time :                  0:31:03
+Estimated running time :        0:40:58
+Estimated running time left :   0:09:55
+
+Estimated relative CPU usage :    98.7%
+
+k-eff (analog)    = 1.32246 +/- 0.00069  [1.32111  1.32381]
+k-eff (implicit)  = 1.32135 +/- 0.00034  [1.32069  1.32202]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   62 / 100  Source neutrons : 49914
+
+Running time :                  0:31:31
+Estimated running time :        0:41:18
+Estimated running time left :   0:09:47
+
+Estimated relative CPU usage :    98.7%
+
+k-eff (analog)    = 1.32239 +/- 0.00068  [1.32105  1.32372]
+k-eff (implicit)  = 1.32132 +/- 0.00034  [1.32066  1.32198]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   63 / 100  Source neutrons : 49982
+
+Running time :                  0:31:48
+Estimated running time :        0:41:21
+Estimated running time left :   0:09:33
+
+Estimated relative CPU usage :    99.0%
+
+k-eff (analog)    = 1.32231 +/- 0.00067  [1.32099  1.32363]
+k-eff (implicit)  = 1.32132 +/- 0.00033  [1.32068  1.32197]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   64 / 100  Source neutrons : 50401
+
+Running time :                  0:31:59
+Estimated running time :        0:41:15
+Estimated running time left :   0:09:15
+
+Estimated relative CPU usage :    99.4%
+
+k-eff (analog)    = 1.32240 +/- 0.00067  [1.32109  1.32371]
+k-eff (implicit)  = 1.32139 +/- 0.00033  [1.32074  1.32204]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   65 / 100  Source neutrons : 50149
+
+Running time :                  0:32:10
+Estimated running time :        0:41:08
+Estimated running time left :   0:08:57
+
+Estimated relative CPU usage :    99.4%
+
+k-eff (analog)    = 1.32255 +/- 0.00068  [1.32122  1.32387]
+k-eff (implicit)  = 1.32143 +/- 0.00033  [1.32079  1.32208]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   66 / 100  Source neutrons : 49387
+
+Running time :                  0:32:22
+Estimated running time :        0:41:02
+Estimated running time left :   0:08:40
+
+Estimated relative CPU usage :    99.4%
+
+k-eff (analog)    = 1.32244 +/- 0.00067  [1.32112  1.32376]
+k-eff (implicit)  = 1.32146 +/- 0.00033  [1.32082  1.32210]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   67 / 100  Source neutrons : 50273
+
+Running time :                  0:32:33
+Estimated running time :        0:40:56
+Estimated running time left :   0:08:22
+
+Estimated relative CPU usage :    99.4%
+
+k-eff (analog)    = 1.32245 +/- 0.00066  [1.32115  1.32375]
+k-eff (implicit)  = 1.32148 +/- 0.00032  [1.32085  1.32211]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   68 / 100  Source neutrons : 50084
+
+Running time :                  0:32:44
+Estimated running time :        0:40:50
+Estimated running time left :   0:08:05
+
+Estimated relative CPU usage :    99.4%
+
+k-eff (analog)    = 1.32249 +/- 0.00065  [1.32120  1.32377]
+k-eff (implicit)  = 1.32142 +/- 0.00032  [1.32079  1.32205]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   69 / 100  Source neutrons : 49763
+
+Running time :                  0:32:55
+Estimated running time :        0:40:44
+Estimated running time left :   0:07:48
+
+Estimated relative CPU usage :    99.4%
+
+k-eff (analog)    = 1.32243 +/- 0.00065  [1.32116  1.32370]
+k-eff (implicit)  = 1.32143 +/- 0.00032  [1.32081  1.32205]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   70 / 100  Source neutrons : 49946
+
+Running time :                  0:33:07
+Estimated running time :        0:40:39
+Estimated running time left :   0:07:32
+
+Estimated relative CPU usage :    99.4%
+
+k-eff (analog)    = 1.32236 +/- 0.00064  [1.32110  1.32362]
+k-eff (implicit)  = 1.32144 +/- 0.00031  [1.32082  1.32205]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   71 / 100  Source neutrons : 50156
+
+Running time :                  0:33:26
+Estimated running time :        0:40:45
+Estimated running time left :   0:07:18
+
+Estimated relative CPU usage :    98.8%
+
+k-eff (analog)    = 1.32235 +/- 0.00063  [1.32111  1.32359]
+k-eff (implicit)  = 1.32142 +/- 0.00031  [1.32082  1.32203]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   72 / 100  Source neutrons : 49616
+
+Running time :                  0:33:54
+Estimated running time :        0:41:03
+Estimated running time left :   0:07:08
+
+Estimated relative CPU usage :    98.7%
+
+k-eff (analog)    = 1.32219 +/- 0.00064  [1.32093  1.32345]
+k-eff (implicit)  = 1.32141 +/- 0.00030  [1.32081  1.32200]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   73 / 100  Source neutrons : 50249
+
+Running time :                  0:34:22
+Estimated running time :        0:41:20
+Estimated running time left :   0:06:58
+
+Estimated relative CPU usage :    98.7%
+
+k-eff (analog)    = 1.32213 +/- 0.00064  [1.32089  1.32338]
+k-eff (implicit)  = 1.32137 +/- 0.00030  [1.32078  1.32197]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   74 / 100  Source neutrons : 50172
+
+Running time :                  0:34:35
+Estimated running time :        0:41:17
+Estimated running time left :   0:06:41
+
+Estimated relative CPU usage :    99.2%
+
+k-eff (analog)    = 1.32214 +/- 0.00063  [1.32091  1.32337]
+k-eff (implicit)  = 1.32139 +/- 0.00030  [1.32081  1.32198]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   75 / 100  Source neutrons : 49892
+
+Running time :                  0:34:47
+Estimated running time :        0:41:12
+Estimated running time left :   0:06:25
+
+Estimated relative CPU usage :    99.4%
+
+k-eff (analog)    = 1.32210 +/- 0.00062  [1.32089  1.32332]
+k-eff (implicit)  = 1.32132 +/- 0.00030  [1.32073  1.32192]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   76 / 100  Source neutrons : 49817
+
+Running time :                  0:34:58
+Estimated running time :        0:41:06
+Estimated running time left :   0:06:08
+
+Estimated relative CPU usage :    99.4%
+
+k-eff (analog)    = 1.32200 +/- 0.00062  [1.32079  1.32322]
+k-eff (implicit)  = 1.32132 +/- 0.00030  [1.32073  1.32191]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   77 / 100  Source neutrons : 50094
+
+Running time :                  0:35:23
+Estimated running time :        0:41:19
+Estimated running time left :   0:05:55
+
+Estimated relative CPU usage :    98.7%
+
+k-eff (analog)    = 1.32194 +/- 0.00061  [1.32074  1.32315]
+k-eff (implicit)  = 1.32127 +/- 0.00030  [1.32068  1.32186]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   78 / 100  Source neutrons : 50304
+
+Running time :                  0:35:51
+Estimated running time :        0:41:34
+Estimated running time left :   0:05:43
+
+Estimated relative CPU usage :    98.7%
+
+k-eff (analog)    = 1.32198 +/- 0.00061  [1.32079  1.32318]
+k-eff (implicit)  = 1.32125 +/- 0.00030  [1.32067  1.32183]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   79 / 100  Source neutrons : 49980
+
+Running time :                  0:36:13
+Estimated running time :        0:41:43
+Estimated running time left :   0:05:29
+
+Estimated relative CPU usage :    98.8%
+
+k-eff (analog)    = 1.32202 +/- 0.00060  [1.32084  1.32320]
+k-eff (implicit)  = 1.32130 +/- 0.00030  [1.32072  1.32188]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   80 / 100  Source neutrons : 50196
+
+Running time :                  0:36:24
+Estimated running time :        0:41:37
+Estimated running time left :   0:05:13
+
+Estimated relative CPU usage :    99.4%
+
+k-eff (analog)    = 1.32211 +/- 0.00060  [1.32093  1.32329]
+k-eff (implicit)  = 1.32130 +/- 0.00029  [1.32072  1.32187]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   81 / 100  Source neutrons : 49683
+
+Running time :                  0:36:48
+Estimated running time :        0:41:48
+Estimated running time left :   0:04:59
+
+Estimated relative CPU usage :    98.7%
+
+k-eff (analog)    = 1.32211 +/- 0.00059  [1.32094  1.32327]
+k-eff (implicit)  = 1.32130 +/- 0.00029  [1.32074  1.32187]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   82 / 100  Source neutrons : 50128
+
+Running time :                  0:37:17
+Estimated running time :        0:42:03
+Estimated running time left :   0:04:46
+
+Estimated relative CPU usage :    98.7%
+
+k-eff (analog)    = 1.32214 +/- 0.00059  [1.32099  1.32329]
+k-eff (implicit)  = 1.32129 +/- 0.00029  [1.32073  1.32185]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   83 / 100  Source neutrons : 49850
+
+Running time :                  0:37:42
+Estimated running time :        0:42:14
+Estimated running time left :   0:04:32
+
+Estimated relative CPU usage :    98.8%
+
+k-eff (analog)    = 1.32212 +/- 0.00058  [1.32098  1.32326]
+k-eff (implicit)  = 1.32128 +/- 0.00028  [1.32073  1.32184]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   84 / 100  Source neutrons : 49583
+
+Running time :                  0:37:54
+Estimated running time :        0:42:09
+Estimated running time left :   0:04:15
+
+Estimated relative CPU usage :    99.3%
+
+k-eff (analog)    = 1.32198 +/- 0.00059  [1.32081  1.32314]
+k-eff (implicit)  = 1.32129 +/- 0.00028  [1.32074  1.32184]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   85 / 100  Source neutrons : 50486
+
+Running time :                  0:38:21
+Estimated running time :        0:42:23
+Estimated running time left :   0:04:01
+
+Estimated relative CPU usage :    98.7%
+
+k-eff (analog)    = 1.32198 +/- 0.00059  [1.32083  1.32313]
+k-eff (implicit)  = 1.32135 +/- 0.00028  [1.32080  1.32191]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   86 / 100  Source neutrons : 50586
+
+Running time :                  0:38:49
+Estimated running time :        0:42:36
+Estimated running time left :   0:03:47
+
+Estimated relative CPU usage :    98.8%
+
+k-eff (analog)    = 1.32217 +/- 0.00061  [1.32098  1.32336]
+k-eff (implicit)  = 1.32139 +/- 0.00028  [1.32084  1.32195]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   87 / 100  Source neutrons : 49490
+
+Running time :                  0:39:12
+Estimated running time :        0:42:44
+Estimated running time left :   0:03:32
+
+Estimated relative CPU usage :    98.8%
+
+k-eff (analog)    = 1.32219 +/- 0.00060  [1.32101  1.32337]
+k-eff (implicit)  = 1.32141 +/- 0.00028  [1.32086  1.32196]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   88 / 100  Source neutrons : 50291
+
+Running time :                  0:39:23
+Estimated running time :        0:42:39
+Estimated running time left :   0:03:15
+
+Estimated relative CPU usage :    99.4%
+
+k-eff (analog)    = 1.32231 +/- 0.00061  [1.32112  1.32349]
+k-eff (implicit)  = 1.32136 +/- 0.00028  [1.32081  1.32191]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   89 / 100  Source neutrons : 49822
+
+Running time :                  0:39:41
+Estimated running time :        0:42:41
+Estimated running time left :   0:02:59
+
+Estimated relative CPU usage :    98.9%
+
+k-eff (analog)    = 1.32236 +/- 0.00060  [1.32118  1.32354]
+k-eff (implicit)  = 1.32132 +/- 0.00028  [1.32078  1.32187]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   90 / 100  Source neutrons : 49711
+
+Running time :                  0:40:10
+Estimated running time :        0:42:54
+Estimated running time left :   0:02:44
+
+Estimated relative CPU usage :    98.7%
+
+k-eff (analog)    = 1.32233 +/- 0.00060  [1.32117  1.32350]
+k-eff (implicit)  = 1.32129 +/- 0.00028  [1.32074  1.32184]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   91 / 100  Source neutrons : 50067
+
+Running time :                  0:40:38
+Estimated running time :        0:43:07
+Estimated running time left :   0:02:28
+
+Estimated relative CPU usage :    98.7%
+
+k-eff (analog)    = 1.32232 +/- 0.00059  [1.32117  1.32348]
+k-eff (implicit)  = 1.32129 +/- 0.00028  [1.32075  1.32184]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   92 / 100  Source neutrons : 50210
+
+Running time :                  0:40:53
+Estimated running time :        0:43:05
+Estimated running time left :   0:02:12
+
+Estimated relative CPU usage :    99.1%
+
+k-eff (analog)    = 1.32237 +/- 0.00058  [1.32123  1.32352]
+k-eff (implicit)  = 1.32134 +/- 0.00028  [1.32080  1.32189]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   93 / 100  Source neutrons : 49895
+
+Running time :                  0:41:13
+Estimated running time :        0:43:09
+Estimated running time left :   0:01:56
+
+Estimated relative CPU usage :    98.8%
+
+k-eff (analog)    = 1.32239 +/- 0.00058  [1.32126  1.32353]
+k-eff (implicit)  = 1.32131 +/- 0.00028  [1.32076  1.32185]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   94 / 100  Source neutrons : 49667
+
+Running time :                  0:41:40
+Estimated running time :        0:43:20
+Estimated running time left :   0:01:40
+
+Estimated relative CPU usage :    98.7%
+
+k-eff (analog)    = 1.32232 +/- 0.00058  [1.32119  1.32345]
+k-eff (implicit)  = 1.32132 +/- 0.00027  [1.32078  1.32186]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   95 / 100  Source neutrons : 50566
+
+Running time :                  0:42:08
+Estimated running time :        0:43:32
+Estimated running time left :   0:01:24
+
+Estimated relative CPU usage :    98.7%
+
+k-eff (analog)    = 1.32240 +/- 0.00058  [1.32127  1.32353]
+k-eff (implicit)  = 1.32133 +/- 0.00027  [1.32079  1.32186]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   96 / 100  Source neutrons : 49596
+
+Running time :                  0:42:21
+Estimated running time :        0:43:28
+Estimated running time left :   0:01:07
+
+Estimated relative CPU usage :    99.2%
+
+k-eff (analog)    = 1.32237 +/- 0.00057  [1.32125  1.32349]
+k-eff (implicit)  = 1.32130 +/- 0.00027  [1.32077  1.32183]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   97 / 100  Source neutrons : 49938
+
+Running time :                  0:42:38
+Estimated running time :        0:43:28
+Estimated running time left :   0:00:50
+
+Estimated relative CPU usage :    99.0%
+
+k-eff (analog)    = 1.32233 +/- 0.00057  [1.32121  1.32344]
+k-eff (implicit)  = 1.32127 +/- 0.00027  [1.32075  1.32180]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   98 / 100  Source neutrons : 50542
+
+Running time :                  0:43:06
+Estimated running time :        0:43:40
+Estimated running time left :   0:00:33
+
+Estimated relative CPU usage :    98.7%
+
+k-eff (analog)    = 1.32243 +/- 0.00057  [1.32131  1.32355]
+k-eff (implicit)  = 1.32132 +/- 0.00027  [1.32079  1.32185]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle   99 / 100  Source neutrons : 49601
+
+Running time :                  0:43:34
+Estimated running time :        0:43:51
+Estimated running time left :   0:00:16
+
+Estimated relative CPU usage :    98.7%
+
+k-eff (analog)    = 1.32242 +/- 0.00057  [1.32131  1.32353]
+k-eff (implicit)  = 1.32136 +/- 0.00027  [1.32083  1.32190]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+------------------------------------------------------------
+
+Serpent 2.2.3 -- Static criticality source simulation
+
+Title: "BWRX-300 Core Model (3D)" 
+
+Active cycle  100 / 100  Source neutrons : 50408
+
+Running time :                  0:43:49
+Estimated running time :        0:43:49
+Estimated running time left :   0:00:00
+
+Estimated relative CPU usage :    99.1%
+
+k-eff (analog)    = 1.32252 +/- 0.00057  [1.32140  1.32363]
+k-eff (implicit)  = 1.32132 +/- 0.00027  [1.32078  1.32185]
+
+(O4) (MPI=2) (OMP=1) 
+------------------------------------------------------------
+
+Transport cycle completed in 43.4 minutes.
+
+Waiting for results from other MPI tasks...
+OK.
+
+Calculating activities...
+OK.
+
+
+Simulation completed.
+------------------------------------------------------------
+Wed Apr 15 14:22:54 2026  (errors: 0, warnings: 0, notes: 5)
+
+
+real	45m3.611s
+user	88m54.679s
+sys	0m6.693s

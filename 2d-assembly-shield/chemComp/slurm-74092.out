@@ -1,0 +1,230 @@
+
+  _                   .-=-.           .-=-.          .-==-.       
+ { }      __        .' O o '.       .' O o '.       /  -<' )--<   
+ { }    .' O'.     / o .-. O \     / o .-. O \     /  .---`       
+ { }   / .-. o\   /O  /   \  o\   /O  /   \  o\   /O /            
+  \ `-` /   \ O`-'o  /     \  O`-'o  /     \  O`-`o /             
+   `-.-`     '.____.'       `._____.'       `.____.'              
+
+Serpent 2.2
+
+A Continuous-energy Monte Carlo transport calculation calculation code
+
+ - Version 2.2.3 (October 16, 2025) -- Contact: serpent@vtt.fi
+
+ - Reference: J. Leppanen, et al. "Status of Serpent Monte Carlo code
+              in 2024." EPJ Nuclear Sci. Technol. 11 (2025) 3.
+              https://doi.org/10.1051/epjn/2024031
+
+The Serpent software is proprietary and subject to export control
+restrictions. The terms and conditions for using Serpent are outlined
+in the software licence agreement.
+
+For online documentation, see: https://serpent.vtt.fi/docs
+
+ - Compiled Nov 12 2025 19:30:53
+
+ - MPI Parallel calculation mode available
+
+ - OpenMP Parallel calculation mode available
+
+ - Geometry and mesh plotting available
+
+ - Default data path not set
+
+ - Full command used to run Serpent:
+
+   sss2 -omp 1 concComp1.inp
+
+Begin calculation on Mon Apr 20 18:37:15 2026 at node025.rdfmg.local
+
+Reading input file "concComp1.inp"...
+
+
+ ***** Note #1 Mon Apr 20 18:37:15 2026
+
+Surface "s1001": half-thickness used as radius 
+{s =  5.00000E-01} (rounded corners)
+
+Checking duplicate input definitions...
+OK.
+
+Creating geometry...
+OK.
+
+Counting geometry zones...
+
+The geometry consists of 5 levels. Universes belonging
+to multiple levels are listed only once.
+
+Level 0 universes:
+
+ - Universe 0: CSG
+
+Level 1 universes:
+
+ - Universe uLatCore: Lattice (type 1)
+
+Level 2 universes:
+
+ - Universe uF1: CSG
+ - Universe uC1: CSG
+
+Level 3 universes:
+
+ - Universe uLat1: Lattice (type 1)
+
+Level 4 universes:
+
+ - Universe 1: Nest
+ - Universe 4: Nest
+ - Universe 2: Nest
+ - Universe 6: Nest
+ - Universe 3: Nest
+
+
+ ***** Note #2 Mon Apr 20 18:37:15 2026
+
+Nest 5 is not used in geometry
+
+Processing cells...
+OK.
+
+Linking materials to geometry...
+OK.
+
+Processing detector definitions...
+OK.
+
+Counting cells...
+OK.
+
+Processing data for group constant generation:
+
+ - 168 energy groups in micro-group structure
+ - 2 energy groups in macro-group structure
+ - B1 fundamental mode calculation is not run
+ - Group constants generated in 1 universes
+ - Discontinuity factors are not calculated
+ - Pin-power distributions are not calculated
+ - Albedos are not calculated
+ - Poison cross sections are not calculated
+
+Plotting geometry:
+
+   0% complete
+  33% complete
+  67% complete
+ 100% complete
+
+Reading ACE directory files...
+OK.
+
+Reading neutron-induced fission yields...
+OK.
+
+Reading spontaneous fission yields...
+OK.
+
+Adding nuclides in material mF45...
+
+Nuclide  92235.00c -- uranium 235 at 294K (U-235)
+Nuclide  92238.00c -- uranium 238 at 294K (U-238)
+Nuclide   8016.00c -- oxygen 16 at 294K (O-16)
+Nuclide  98252.00c -- californium 252 at 294K (Cf-252)
+
+Adding nuclides in material mClad...
+
+Nuclide  40090.00c -- zirconium 90 at 350K (Zr-90)
+Nuclide  40091.00c -- zirconium 91 at 350K (Zr-91)
+Nuclide  40092.00c -- zirconium 92 at 350K (Zr-92)
+Nuclide  40094.00c -- zirconium 94 at 350K (Zr-94)
+Nuclide  40096.00c -- zirconium 96 at 350K (Zr-96)
+
+Adding nuclides in material mSS...
+
+Nuclide  26054.00c -- iron 54 at 350K (Fe-54)
+Nuclide  26056.00c -- iron 56 at 350K (Fe-56)
+Nuclide  26057.00c -- iron 57 at 350K (Fe-57)
+Nuclide  26058.00c -- iron 58 at 350K (Fe-58)
+
+Adding nuclides in material mWater...
+
+Nuclide   1001.00c -- hydrogen at 300K (H-1)
+Nuclide   8016.00c -- oxygen 16 at 300K (O-16)
+
+Adding nuclides in material mCR...
+
+Nuclide   6012.00c -- carbon 12 at 350K (C-12)
+
+Adding nuclides in material mConcrete...
+
+Nuclide   1001.03c -- hydrogen at 350K (H-1)
+Nuclide   1002.03c -- deuterium at 350K (H-2)
+Nuclide   6012.03c -- carbon 12 at 350K (C-12)
+Nuclide   6013.03c -- carbon 13 at 350K (C-13)
+Nuclide   8016.03c -- oxygen 16 at 350K (O-16)
+Nuclide   8017.03c -- oxygen 17 at 350K (O-17)
+Nuclide   8018.03c -- oxygen 18 at 350K (O-18)
+Nuclide  11023.03c -- sodium 23 at 350K (Na-23)
+Nuclide  12024.03c -- magnesium 24 at 350K (Mg-24)
+Nuclide  12025.03c -- magnesium 25 at 350K (Mg-25)
+Nuclide  12026.03c -- magnesium 26 at 350K (Mg-26)
+Nuclide  13027.03c -- aluminum 27 at 350K (Al-27)
+Nuclide  14028.03c -- silicon 28 at 350K (Si-28)
+Nuclide  14029.03c -- silicon 29 at 350K (Si-29)
+Nuclide  14030.03c -- silicon 30 at 350K (Si-30)
+Nuclide  19039.03c -- potassium 39 at 350K (K-39)
+Nuclide  19041.03c -- potassium 41 at 350K (K-41)
+Nuclide  20040.03c -- calcium 40 at 350K (Ca-40)
+Nuclide  20042.03c -- calcium 42 at 350K (Ca-42)
+Nuclide  20043.03c -- calcium 43 at 350K (Ca-43)
+Nuclide  20044.03c -- calcium 44 at 350K (Ca-44)
+Nuclide  20048.03c -- calcium 48 at 350K (Ca-48)
+Nuclide  26054.03c -- iron 54 at 350K (Fe-54)
+Nuclide  26056.03c -- iron 56 at 350K (Fe-56)
+Nuclide  26057.03c -- iron 57 at 350K (Fe-57)
+Nuclide  16032.03c -- sulfur 32 at 350K (S-32)
+Nuclide  16034.03c -- sulfur 34 at 350K (S-34)
+
+Running Doppler-broadening preprocessor:
+
+Adjusting nuclide  40090.00c temperature from 294K to 350K...
+Adjusting nuclide  40091.00c temperature from 294K to 350K...
+Adjusting nuclide  40092.00c temperature from 294K to 350K...
+Adjusting nuclide  40094.00c temperature from 294K to 350K...
+Adjusting nuclide  40096.00c temperature from 294K to 350K...
+Adjusting nuclide  26054.00c temperature from 294K to 350K...
+Adjusting nuclide  26056.00c temperature from 294K to 350K...
+Adjusting nuclide  26057.00c temperature from 294K to 350K...
+Adjusting nuclide  26058.00c temperature from 294K to 350K...
+Adjusting nuclide   1001.00c temperature from 294K to 300K...
+Adjusting nuclide   8016.00c temperature from 294K to 300K...
+Adjusting nuclide   6012.00c temperature from 294K to 350K...
+
+***** Mon Apr 20 18:38:26 2026
+
+Error:
+
+Doppler temperature 350.0K below original 1200.0K in 1001.03c
+
+
+Simulation aborted.
+------------------------------------------------------------
+Mon Apr 20 18:38:26 2026  (errors: 1, warnings: 0, notes: 2)
+
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[48955,1],0]
+  Exit code:    255
+--------------------------------------------------------------------------
+
+real	1m14.735s
+user	0m26.138s
+sys	0m2.353s

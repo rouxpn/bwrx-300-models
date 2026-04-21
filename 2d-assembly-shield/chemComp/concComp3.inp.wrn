@@ -1,0 +1,35 @@
+
+ ***** Note #1 Mon Apr 20 19:13:44 2026
+
+Surface "s1001": half-thickness used as radius 
+{s =  5.00000E-01} (rounded corners)
+
+
+ ***** Note #2 Mon Apr 20 19:13:44 2026
+
+Nest 5 is not used in geometry
+
+
+***** Mon Apr 20 19:19:35 2026 (seed = 1776726823898, MPI task = 1)
+Warning message #1 from function ProcessPhotoelectric:
+
+Unable to open file /data/cm/shared/nuclearCodes/serpent/libs/photon_data/xspe.dat for reading (2.1.30 photoelectric xs data). Previous data format will be used if available.
+NOTE: Support for the old format will be removed in 2.1.31.
+
+
+***** Mon Apr 20 19:19:35 2026 (seed = 1776726823898, MPI task = 0)
+Warning message #1 from function ProcessPhotoelectric:
+
+Unable to open file /data/cm/shared/nuclearCodes/serpent/libs/photon_data/xspe.dat for reading (2.1.30 photoelectric xs data). Previous data format will be used if available.
+NOTE: Support for the old format will be removed in 2.1.31.
+
+
+Simulation completed.
+------------------------------------------------- MPI task 1
+Mon Apr 20 19:20:01 2026  (errors: 0, warnings: 1, notes: 0)
+
+
+Simulation completed.
+------------------------------------------------- MPI task 0
+Mon Apr 20 19:20:01 2026  (errors: 0, warnings: 1, notes: 2)
+

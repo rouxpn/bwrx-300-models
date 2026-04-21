@@ -1,0 +1,117 @@
+set title "ALARM-CF-FE-SHIELD-001: 15 cm iron sphere"
+
+% 1e9 particles, single inactive + active cycle (fixed source mode)
+set pop 1000 100 20   
+set bc 1
+
+% Enable coupled neutron-photon transport
+set ngamma 1
+
+% Cross-section libraries (update paths as needed)
+set acelib "/data/cm/shared/nuclearCodes/serpent/libs/xsdata/endfb80/sss_endfb80u.xsdata" \
+           "/data/cm/shared/nuclearCodes/serpent/libs/photon_data/mcplib.xsdata"
+set declib "/data/cm/shared/nuclearCodes/serpent/libs/xsdata/endfb80/sss_endfb80.dec"
+set nfylib "/data/cm/shared/nuclearCodes/serpent/libs/xsdata/endfb80/sss_endfb80.nfy"
+set pdatadir "/data/cm/shared/nuclearCodes/serpent/libs/photon_data"
+
+% ------------------------------------------------------------
+% GEOMETRY
+% Concentric spheres, all centered at origin
+% Radii from Table 1 of Häkkinen (2022)
+% ------------------------------------------------------------
+surf s0  sph  0.0 0.0 0.0   0.20  % Cf-252 source sphere (~point)
+surf s1  sph  0.0 0.0 0.0   0.21   % steel capsule inner (Cf source cavity)
+surf s2  sph  0.0 0.0 0.0   0.53   % steel capsule outer
+surf s3  sph  0.0 0.0 0.0   0.61   % copper shell inner
+surf s4  sph  0.0 0.0 0.0   0.84   % copper shell outer
+surf s5  sph  0.0 0.0 0.0  15.00   % iron sphere outer
+surf s6  sph  0.0 0.0 0.0  45.00   % detector at 3R = 45 cm
+surf s7  sph  0.0 0.0 0.0  50.00   % outer (kill) boundary
+
+cell c0   0  mCf          -s0      % Cf-252 source
+cell c1   0  void      -s1 s0      % void
+cell c2   0  mSteel    -s2 s1      % stainless steel capsule
+cell c3   0  void      -s3 s2      % void gap
+cell c4   0  mCu       -s4 s3      % copper shell
+cell c5   0  mFe       -s5 s4      % iron sphere
+cell c6   0  void      -s6 s5      % void between sphere and detector
+cell c7   0  void      -s7 s6      % void beyond detector (scoring region)
+cell c8   0  outside       s7      % outside world
+
+% ------------------------------------------------------------
+% MATERIALS
+% ------------------------------------------------------------
+
+% Cf-252: point-like source material (tiny sphere r=0.21 cm)
+% Density approximate; geometry is essentially a point source
+mat mCf  -15.1 tmp 300 
+ 98252.00c  0.01
+ 92235.00c  0.99
+
+% Steel capsule: iron + 0.4 wt% Mn + 0.1 wt% C (per benchmark spec)
+% density 7.84 g/cm3
+mat mSteel  -7.84 tmp 300 
+ 26054.00c  -0.05613
+ 26056.00c  -0.91445
+ 26057.00c  -0.02147
+ 26058.00c  -0.00292
+ 25055.00c  -0.00400
+  6012.00c  -0.00100
+  92235.00c -0.2
+
+% Copper shell: pure Cu, density 8.9 g/cm3
+mat mCu  -8.9 tmp 300 
+ 29063.00c  -0.6915
+ 29065.00c  -0.3085
+
+% Iron sphere: same composition as steel capsule per benchmark
+mat mFe  -7.84 tmp 300 
+ 26054.00c  -0.05613
+ 26056.00c  -0.91445
+ 26057.00c  -0.02147
+ 26058.00c  -0.00292
+ 25055.00c  -0.00400
+  6012.00c  -0.00100
+
+% ------------------------------------------------------------
+% SOURCE
+% Watt fission spectrum for Cf-252 (point source at origin)
+% Note: the paper uses a SERPENT decay source obtained from a
+% 10-day Cf-252 decay calculation. This Watt source matches
+% the MCNP benchmark approach and is a reasonable approximation.
+% ------------------------------------------------------------
+%src S1
+%  sp 0.0 0.0 0.0         % point source position
+%  sw watt 1.025 2.926    % Watt spectrum: a=1.025 MeV, b=2.926 MeV^-1 (Cf-252)
+
+% ------------------------------------------------------------
+% ENERGY GRIDS
+% ------------------------------------------------------------
+
+% Neutron: 0.01 to 20 MeV, 100 log-spaced bins
+ene eNeutron  1  100  1.0e-2  20.0
+
+% Photon: 0.2 to 10 MeV, 100 log-spaced bins
+ene ePhoton   1  100  0.2  10.0
+
+% ------------------------------------------------------------
+% DETECTORS
+% Surface flux tally on sphere at 3R (surf s6)
+% Scored per source particle per MeV
+% ------------------------------------------------------------
+
+% Neutron leakage spectrum
+det neutron_leak  n
+  ds s6  1           % surface s6, outward current
+  de eNeutron
+
+% Photon leakage spectrum
+det photon_leak  p
+  ds s6  1           % surface s6, outward current
+  de ePhoton
+
+% ------------------------------------------------------------
+% PLOTS (optional, for geometry verification)
+% ------------------------------------------------------------
+plot 3 1000 1000 0.0  -50.0 50.0 -50.0 50.0
+plot 3 1000 1000 0.0  -5.0  5.0  -5.0  5.0

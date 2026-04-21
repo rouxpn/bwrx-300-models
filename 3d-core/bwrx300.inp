@@ -5,12 +5,12 @@ set bc 2                % Reflective boundary conditions
 set power 300000000.0  % Core power (300 MWt)
 
 % Cross-Section Libraries
-set acelib "/data/cm/shared/nuclearCodes/serpent/libs/xsdata/jeff311/sss_jeff311u.xsdata"
-set declib "/data/cm/shared/nuclearCodes/serpent/libs/xsdata/jeff311/sss_jeff311.dec"
-set nfylib "/data/cm/shared/nuclearCodes/serpent/libs/xsdata/jeff311/sss_jeff311.nfy"
-therm lwtr 300.000000 lwj3.00t lwj3.03t
-therm lwtre 300.000000 lwj3.00t lwj3.03t
-therm grph 300.000000 grj3.00t grj3.04t
+set acelib "/data/cm/shared/nuclearCodes/serpent/libs/xsdata/endfb80/sss_endfb80u.xsdata" "/data/cm/shared/nuclearCodes/serpent/libs/photon_data/mcplib.xsdata"
+set declib "/data/cm/shared/nuclearCodes/serpent/libs/xsdata/endfb80/sss_endfb80.dec"
+set nfylib "/data/cm/shared/nuclearCodes/serpent/libs/xsdata/endfb80/sss_endfb80.nfy"
+set pdatadir "/data/cm/shared/nuclearCodes/serpent/libs/photon_data"
+set sfylib "/data/cm/shared/nuclearCodes/serpent/libs/xsdata/endfb80/sss_endfb80.sfy"
+therm lwtr  h-h2o.40t 
 
 % Plot for Verification
 plot 3 1000 1000 0.0 
@@ -18,33 +18,36 @@ plot 3 1000 1000 1.0 -7.62 7.62 -7.62 7.62
 plot 2 500 1500  5.0 -7.62 7.62 -188 188 
 
 % Define Materials
-mat mF1  -10.4215  tmp 900  burn 1
-    92235.09c  1.0515E-03
-    92238.09c  2.2314E-02
-    8016.09c   4.6731E-02
+mat mF1  -10.4215  tmp 300  burn 1
+    92235.00c  1.0515E-03
+    92238.00c  2.2314E-02
+    8016.00c   4.6731E-02
 
 mat mClad -6.5 tmp 350 rgb 105 105 105  % Zr-based alloy cladding
-    40090.03c  0.5145  % Zr-90
-    40091.03c  0.1122  % Zr-91
-    40092.03c  0.1715  % Zr-92
-    40094.03c  0.1738  % Zr-94
-    40096.03c  0.0280  % Zr-96
+    40090.00c  0.5145  % Zr-90
+    40091.00c  0.1122  % Zr-91
+    40092.00c  0.1715  % Zr-92
+    40094.00c  0.1738  % Zr-94
+    40096.00c  0.0280  % Zr-96
 
 mat mSS -7.87 tmp 350 rgb 255 165 0 
-    26000.03c  1.0
+    26054.00c 0.05646
+    26056.00c 0.91902
+    26057.00c 0.02160
+    26058.00c 0.00293
 
 mat mWater -1.0 tmp 350 moder lwtr 1001 rgb 10 10 100 
-    1001.03c  2.0
-    8016.03c  1.0
+    1001.00c  2.0
+    8016.00c  1.0
 
 mat mWaterChann -1.0 tmp 350 moder lwtr 1001 rgb 10 10 200 
-    1001.03c  2.0
-    8016.03c  1.0
+    1001.00c  2.0
+    8016.00c  1.0
 
 mat mCR -1.757 tmp 350 rgb 50 50 50 
-    5010.03c  0.1443  % B-10
-    5011.03c  0.6386  % B-11
-    6012.03c  0.2171  % C-12
+    5010.00c  0.1443  % B-10
+    5011.00c  0.6386  % B-11
+    6012.00c  0.2171  % C-12
 
 % Pin definitions
 pin 1
@@ -159,7 +162,7 @@ uF2B uR
 uF1B uR
 
 surf s22_1RW  sqc  0.0 0.0 15.85
-cell c22_1RW  uF22RW  fill  uBundleRW -s22_1RW  
+cell c22_1RW  uFRW  fill  uBundleRW -s22_1RW  
 
 % -------------------------------------------------------------------
 % 2x2 cluster - 2D - Unrodded with Refl, to be placed in core on South side
@@ -217,8 +220,8 @@ cell c22_1RNE  uF22RNE  fill  uBundleRNE -s22_1RNE
 % 2x2 cluster - 2D - Unrodded with Refl, to be placed in core on South East side
 % -------------------------------------------------------------------
 lat uBundleRSE  1 0.0  0.0 2 2 15.85
-uR   uF1B
-uF1B uF2B
+uR   uR
+uR  uF2B
 
 surf s22_1RSE  sqc  0.0 0.0 15.85
 cell c22_1RSE  uF22RSE  fill  uBundleRSE -s22_1RSE 
@@ -232,6 +235,16 @@ uF1B uR
 
 surf s22_1RSW  sqc  0.0 0.0 15.85
 cell c22_1RSW  uF22RSW  fill  uBundleRSW -s22_1RSW 
+
+% -------------------------------------------------------------------
+% 2x2 cluster - 2D - Reflector bundle
+% -------------------------------------------------------------------
+lat uBundleRR  1 0.0  0.0 2 2 15.85
+uR   uR
+uR   uR
+
+surf s22_1RR  sqc  0.0 0.0 15.85
+cell c22_1RR  u22RR  fill  uBundleRR -s22_1RR 
 
 
 % -------------------------------------------------------------------
@@ -460,16 +473,16 @@ cell cR1  uR  mWaterChann -sR1
 % ------------------------------------------------------------------------------
 
 lat uCore 1 0.0  0.0 10 10 31.70
-uR      uR      uR uF22RS uF22RS uF22RS uF22RS uF22RSW uR      uR 
-uR      uF22RSE uF22R   uF22   uF22R  uF22   uF22R  uF22    uF22RSW uR  
-uR      uF22R   uF22    uF22R  uF22   uF22R  uF22   uF22R   uF22    uF22RSW 
-uF22RSE  uF22    uF22R   uF22   uF22R  uF22   uF22R  uF22    uF22R   uF22RW  
-uF22RE  uF22R   uF22    uF22R  uF22   uF22R  uF22   uF22R   uF22    uF22RW 
-uF22RE  uF22    uF22R   uF22   uF22R  uF22   uF22R  uF22    uF22R   uF22RW  
-uF22RE  uF22R   uF22    uF22R  uF22   uF22R  uF22   uF22R   uF22    uF22RW 
-uF22RNW uF22    uF22R   uF22   uF22R  uF22   uF22R  uF22    uF22R   uF22RNE  
-uR      uF22RNW uF22    uF22R  uF22   uF22R  uF22   uF22R   uF22RNE uR 
-uR      uR      uF22RNW uF22RN uF22RN uF22RN uF22RN uF22RNE uR      uR  
+u22RR      u22RR     u22RR    uF22RSE  uF22RS  uF22RS  uF22RSW  u22RR    u22RR    u22RR 
+u22RR      u22RR     uF22RSE  uF22     uF22R   uF22    uF22R    uF22RSW  u22RR    u22RR  
+u22RR      uF22RSE   uF22     uF22R    uF22    uF22R   uF22     uF22R    uF22RSW  u22RR 
+uF22RSE    uF22      uF22R    uF22     uF22R   uF22    uF22R    uF22     uF22R    uF22RSW  
+uF22RE     uF22R     uF22     uF22R    uF22    uF22R   uF22     uF22R    uF22     uFRW 
+uF22RE     uF22      uF22R    uF22     uF22R   uF22    uF22R    uF22     uF22R    uFRW  
+uF22RNW    uF22R     uF22     uF22R    uF22    uF22R   uF22     uF22R    uF22     uF22RNE 
+u22RR      uF22RNW   uF22R    uF22     uF22R   uF22    uF22R    uF22     uF22RNE  u22RR  
+u22RR      u22RR     uF22RNW  uF22R    uF22    uF22R   uF22     uF22RNE  u22RR    u22RR 
+u22RR      u22RR     u22RR    uF22RNW  uF22RN  uF22RN  uF22RNE  u22RR    u22RR    u22RR  
 
 surf s1000   sqc      0.0 0.0 158.5
 surf top     pz       182.88
@@ -481,3 +494,21 @@ cell c1001  0 fill uCore     -s1000     z1 -top
 cell c1100  0 outside        -bottom 
 cell c1101  0 outside         top 
 cell c1102  0 outside         s1000    bottom -top 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+set ngamma 1
+
+ene EGRID_FAST 1  1.00  20.0 
+
+% dr total flux response, void = score in whatever material
+% dr 2-bin energy structure
+% dz z from -100 to +100 cm, 400 bins × 0.5 cm each
+det FLUX_N n
+  dr -1 void          
+  de EGRID_FAST       
+  dx -158.5 158.5 1000     
+  
+  det FLUX_P1 p
+  de EGRID_FAST
+  dr -1 void
+  dx -158.5 158.5 1000  

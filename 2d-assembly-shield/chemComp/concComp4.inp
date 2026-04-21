@@ -1,0 +1,234 @@
+set title "BWRX-300 Core Model (2D)"
+set pop 1000 100 20   
+set bc 1
+
+set power 1250000.0  % Core power (300 MWt)
+         
+% Cross-Section Libraries
+set acelib "/data/cm/shared/nuclearCodes/serpent/libs/xsdata/endfb80/sss_endfb80u.xsdata" "/data/cm/shared/nuclearCodes/serpent/libs/photon_data/mcplib.xsdata"
+%set acelib "/data/cm/shared/nuclearCodes/serpent/libs/xsdata/endfb71/sss_endfb71u.xsdata"
+set declib "/data/cm/shared/nuclearCodes/serpent/libs/xsdata/endfb80/sss_endfb80.dec"
+set nfylib "/data/cm/shared/nuclearCodes/serpent/libs/xsdata/endfb80/sss_endfb80.nfy"
+set pdatadir "/data/cm/shared/nuclearCodes/serpent/libs/photon_data"
+set sfylib "/data/cm/shared/nuclearCodes/serpent/libs/xsdata/endfb80/sss_endfb80.sfy"
+
+% Plot for Verification
+plot 3 1000 1000 0.0 
+plot 3 1000 1000 1.0 -7.62 7.62 -7.62 7.62
+plot 2 500 1500
+
+set ngamma 1
+%src S1 p sg mF45 1
+
+% Thermal scattering data
+therm lwtr  h-h2o.40t 
+
+% Define Materials
+% Case 1: UO2, 5% enriched, 10.4 g/cm3 (typical sintered UO2)
+%mat mF45 -10.4
+%92235.00c  -0.04407
+%92238.00c  -0.83737
+%8016.00c   -0.11856
+
+% Case 2: UO2, 5% enriched + 1 wt% Fe-59
+mat mF45 -10.4
+92235.00c  -0.04363
+92238.00c  -0.82900
+8016.00c   -0.11737
+98252.00c  -0.01000
+
+mat mClad -6.5 tmp 350 rgb 105 105 105  % Zr-based alloy cladding
+    40090.00c  0.5145  % Zr-90
+    40091.00c  0.1122  % Zr-91
+    40092.00c  0.1715  % Zr-92
+    40094.00c  0.1738  % Zr-94
+    40096.00c  0.0280  % Zr-96
+
+mat mSS -7.87 tmp 350 rgb 255 165 0 
+    26054.00c 0.05646
+    26056.00c 0.91902
+    26057.00c 0.02160
+    26058.00c 0.00293
+
+mat mWater -1.0 tmp 300 moder lwtr 1001 rgb 255 255 255 
+    1001.00c  2.0
+    8016.00c  1.0
+
+mat mCR -6.5 tmp 350 rgb 50 50 50 
+    40090.00c  0.2032  % B-10
+    40091.00c  0.3068  % B-11
+    6012.00c   0.4900  % C-12
+    
+mat mConcrete -3.0700 tmp 350 rgb 50 50 50
+    1001.00c  -0.00111000
+    6012.00c  -0.01306000
+    6013.00c  -0.00015000
+    8016.00c  -0.01755000
+    8017.00c  -0.00001000
+    8018.00c  -0.00004000
+    11023.00c  -0.02528000
+    12024.00c  -0.02084000
+    12025.00c  -0.00275000
+    12026.00c  -0.00315000
+    13027.00c  -0.02967000
+    14028.00c  -0.02837000
+    14029.00c  -0.00149000
+    14030.00c  -0.00102000
+    19039.00c  -0.03996000
+    19040.00c  -0.00001000
+    19041.00c  -0.00303000
+    20040.00c  -0.04260000
+    20042.00c  -0.00030000
+    20043.00c  -0.00006000
+    20044.00c  -0.00101000
+    20048.00c  -0.00010000
+    26054.00c  -0.00347000
+    26056.00c  -0.05644000
+    26057.00c  -0.00133000
+    26058.00c  -0.00018000
+    16032.00c  -0.03340000
+    16033.00c  -0.00027000
+    16034.00c  -0.00159000
+    5010.00c  -0.00219000
+    5011.00c  -0.00970000
+    82204.00c  -0.00314000
+    82206.00c  -0.05459000
+    82207.00c  -0.05030000
+    82208.00c  -0.11985000
+    83209.00c  -0.22982000
+    74180.00c  -0.00024000
+    74182.00c  -0.05302000
+    74183.00c  -0.02879000
+    74184.00c  -0.06198000
+    74186.00c  -0.05814000
+
+% Pin definitions
+pin 1
+mF45      4.09600E-01 
+mClad 4.75000E-01
+mWater
+
+pin 2
+mF45      4.09600E-01
+mClad 4.75000E-01
+mWater
+
+pin 3
+mF45      4.09600E-01
+mClad 4.75000E-01
+mWater
+
+pin 4
+mSS       4.09600E-01
+mWater
+
+pin 5
+mClad 6.02000E-01
+mWater
+
+pin 6           
+mWater
+
+% Lattice Definition
+% Layout (GNF2 configuration)
+% pin 1 = Fuel Pins (cream)
+% pin 2 = Long Part-Length Rods (Wolfpack red)
+% pin 3 = Short Part-Length Rods (blue)
+% pin 4 = Tie Rods (orange)
+% pin 5 = Water Channel/Control Rods (light blue)
+% pin 6 = Empty Water Locations, helps with showing which parts of the assembly should be filled with the rod channels.
+% -------------------------------------------------------------------
+% Fuel assembly 1 - 2D
+% -------------------------------------------------------------------
+lat uLat1 1 0.0  0.0 10 10 1.295  % 10x10 lattice, pitch = 1.295 cm
+1  1  1  4  2  2  4  1  1  1
+1  1  1  1  1  1  1  1  1  1
+1  1  1  1  1  1  1  1  1  1
+4  1  1  6  6  3  1  1  1  4
+2  1  1  6  6  3  3  1  1  2
+2  1  1  3  3  6  6  1  1  2
+4  1  1  1  3  6  6  1  1  4
+1  1  1  1  1  1  1  1  1  1
+1  1  1  1  1  1  1  1  1  1
+1  1  1  4  2  2  4  1  1  1
+
+
+surf s11  cyl   -1.2950 -1.2950  6.020E-01   % water channel
+surf s12  cyl   -1.2950 -1.2950  12.95E-01   % water channel cladding
+surf s13  cyl    1.2950  1.2950  6.020E-01   % water channel
+surf s14  cyl    1.2950  1.2950  12.95E-01   % water channel cladding
+
+surf sLat1  sqc  0.0 0.0 6.4750 0.50000
+surf sLat2  sqc  0.0 0.0 6.9750 0.50000
+surf sLat3  sqc  0.0 0.0 7.0000 
+
+
+cell 100  uF1  fill  uLat1 -sLat1   s12 s14 
+cell 101  uF1  mClad       -sLat2   sLat1   
+cell 102  uF1  mClad       -sLat3   sLat2                              
+cell 103  uF1  mWater      -s11             % water rod channel right
+cell 104  uF1  mClad       -s12 s11         % water rod channel cladding right
+cell 105  uF1  mWater      -s13             % water rod channel right
+cell 106  uF1  mClad       -s14 s13         % water rod channel cladding right   
+% ------------------------------------------------------------------------------
+% Concrete block block
+surf sLat01  sqc  0.0 0.0 7.0000 
+cell cC100  uC1  mConcrete -sLat01  
+% ------------------------------------------------------------------------------
+
+lat uLatCore 1 0.0 0.0 2 2 13.95
+uF1 uC1 
+uF1 uC1
+
+% Define Boundaries and Reflectors
+surf s1000   sqc      0.0 0.0 13.95
+surf s1001   cross    0.0 0.0 12.950 0.50 1.5 
+
+cell c1000  0 fill uLatCore     -s1000     s1001 
+cell c1001  0 mCR               -s1001      
+cell c1102  0 outside            s1000 
+
+ene EGRID_FAST 1  1.00  20.0 
+
+% dr total flux response, void = score in whatever material
+% dr 2-bin energy structure
+% dz z from -100 to +100 cm, 400 bins × 0.5 cm each
+det FLUX_N n
+  dr -1 void          
+  de EGRID_FAST       
+  dx -13.95 13.95 200     
+  
+  det FLUX_P1 p
+  de EGRID_FAST
+  dr -1 void
+  dx -13.95 13.95 200
+  
+%  det FLUX_P9 p
+%  de EGRID_FAST
+%  dr -9 void
+%  dx -13.95 13.95 200
+%  
+%  det FLUX_P11 p
+%  de EGRID_FAST
+%  dr -11 void
+%  dx -13.95 13.95 200
+%  
+%  det FLUX_P12 p
+%  de EGRID_FAST
+%  dr -12 void
+%  dx -13.95 13.95 200
+%  
+%  det FLUX_P15 p
+%  de EGRID_FAST
+%  dr -15 void
+%  dx -13.95 13.95 200
+%  
+%  det FLUX_P25 p
+%  de EGRID_FAST
+%  dr -25 void
+%  dx -13.95 13.95 200
+%  
+%  det FLUX_P26 p
+%  de EGRID_FAST
+%  dr -26 void
+%  dx -13.95 13.95 200

@@ -1,0 +1,44 @@
+
+ ***** Note #1 Tue Apr  7 18:04:56 2026
+
+Delayed neutron data not available for 95242.00c
+
+
+ ***** Note #2 Tue Apr  7 18:04:57 2026
+
+Delayed neutron data not available for 95642.00c
+
+
+***** Tue Apr  7 18:04:57 2026 (seed = 1775599339681, MPI task = 1)
+Warning message #1 from function ProcessPhotoelectric:
+
+Unable to open file /data/cm/shared/nuclearCodes/serpent/libs/photon_data/xspe.dat for reading (2.1.30 photoelectric xs data). Previous data format will be used if available.
+NOTE: Support for the old format will be removed in 2.1.31.
+
+
+ ***** Note #1 Tue Apr  7 18:04:59 2026
+
+Delayed neutron data not available for 95242.00c
+
+
+ ***** Note #2 Tue Apr  7 18:04:59 2026
+
+Delayed neutron data not available for 95642.00c
+
+
+***** Tue Apr  7 18:05:00 2026 (seed = 1775599339681, MPI task = 0)
+Warning message #1 from function ProcessPhotoelectric:
+
+Unable to open file /data/cm/shared/nuclearCodes/serpent/libs/photon_data/xspe.dat for reading (2.1.30 photoelectric xs data). Previous data format will be used if available.
+NOTE: Support for the old format will be removed in 2.1.31.
+
+
+Simulation completed.
+------------------------------------------------- MPI task 0
+Tue Apr  7 18:05:17 2026  (errors: 0, warnings: 1, notes: 2)
+
+
+Simulation completed.
+------------------------------------------------- MPI task 1
+Tue Apr  7 18:05:17 2026  (errors: 0, warnings: 1, notes: 2)
+
